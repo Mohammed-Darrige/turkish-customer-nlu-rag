@@ -1,0 +1,74 @@
+[
+  {
+    "id": "POL-101",
+    "category": "Kargo ve Teslimat",
+    "title": "Kargo Gecikmesi ve Takip Soruşturması",
+    "keywords": ["kargo", "teslimat", "gecikme", "nerede", "yolda", "gelmedi", "ulaşmadı", "kurye", "takip", "gün", "geçti"],
+    "content": "Standart teslimat süresi 1-3 iş günüdür. Sevkiyat 3 iş gününü aşan süre boyunca hareket etmiyorsa kargo firması nezdinde otomatik kayıp/gecikme soruşturması başlatılır ve müşteriye öncelikli sevk sağlanır.",
+    "grounded_template_empathetic": "Kargonuzun gecikmesinden ve size yaşattığımız bu bekleyişten dolayı çok üzgünüz. [#POL-101] nolu teslimat politikamız gereğince, 3 iş gününü aşan hareketsizlik durumlarında kargo firmasıyla derhal acil soruşturma başlatıyoruz. Gönderinizin hızlandırılması için talebinizi öncelikli sıraya aldık.",
+    "grounded_template_neutral": "Kargo durumunuzla ilgili talebiniz alınmıştır. [#POL-101] nolu teslimat politikamız doğrultusunda kargo sevkiyat süremiz 1-3 iş günüdür. Gecikme yaşanan teslimatlar için sistem üzerinden otomatik takip soruşturması açılabilmektedir."
+  },
+  {
+    "id": "POL-102",
+    "category": "İade ve Değişim",
+    "title": "Koşulsuz İade ve Değişim Süreci",
+    "keywords": ["iade", "değişim", "geri", "göndermek", "beğenmedim", "beden", "uymadı", "cayma", "koşulsuz", "kargo kodu"],
+    "content": "Müşterilerimiz, teslimat tarihinden itibaren 14 gün içinde kullanılmamış ürünleri ücretsiz kargo kodu ile koşulsuz iade etme veya değişim talep etme hakkına sahiptir.",
+    "grounded_template_empathetic": "Ürünün beklentinizi karşılamamasına üzüldük, ancak süreç konusunda hiç endişeniz olmasın. [#POL-102] nolu iade politikamız kapsamında, teslimattan itibaren 14 gün boyunca ücretsiz kargo koduyla koşulsuz iade veya değişim yapabilirsiniz. İade kodunuzu hesabınızdan tek tıkla oluşturabilirsiniz.",
+    "grounded_template_neutral": "İade ve değişim işlemleriniz için [#POL-102] nolu güvence politikamız geçerlidir. Teslimat tarihinden itibaren 14 gün içerisinde anlaşmalı kargo firmamız üzerinden ücretsiz iade kodu alarak işleminizi gerçekleştirebilirsiniz."
+  },
+  {
+    "id": "POL-103",
+    "category": "İptal ve Para İadesi",
+    "title": "Sipariş İptali ve Ücret İadesi Süreleri",
+    "keywords": ["iptal", "para", "iadesi", "ücret", "yansımadı", "ne zaman", "bence", "banka", "kart", "hesap", "geri ödeme"],
+    "content": "Kargoya verilmemiş siparişler anında iptal edilir. İptal veya iade onayından sonra ücret iadesi banka sistemine 24 saat içinde iletilir; bankanın kartınıza yansıtması 1-5 iş günü sürebilir.",
+    "grounded_template_empathetic": "Ücret iadenizin henüz kartınıza yansımaması nedeniyle yaşadığınız endişeyi anlıyoruz. [#POL-103] nolu ücret iade politikamıza göre, iptal işleminizin ardından tutar 24 saat içinde bankanıza aktarılmaktadır. Banka süreçlerine bağlı olarak hesabınıza yansıması 1-5 iş günü sürebilmektedir; süreci sizin için takip ediyoruz.",
+    "grounded_template_neutral": "Sipariş iptali ve ücret geri ödemeleri [#POL-103] nolu finans politikamız doğrultusunda yürütülmektedir. İptal edilen işlemlerin ödeme iadesi 24 saat içinde bankaya iletilmekte olup, kartınıza yansıma süresi bankanıza bağlı olarak 1-5 iş günüdür."
+  },
+  {
+    "id": "POL-104",
+    "category": "Hasarlı veya Eksik Ürün",
+    "title": "Hasarlı, Kırık veya Eksik Teslimat Çözümü",
+    "keywords": ["hasarlı", "kırık", "eksik", "parça", "bozuk", "yırtık", "ezik", "hatalı", "yanlış", "ürün geldi", "hasar tutanağı"],
+    "content": "Kargodan hasarlı, kırık veya eksik çıkan ürünler için 48 saat içinde fotoğraf ile bildirim yapıldığında tutanak şartı aranmaksızın anında yeni ürün çıkışı veya tam ücret iadesi sağlanır.",
+    "grounded_template_empathetic": "Siparişinizin size hasarlı veya eksik ulaşmasından dolayı çok büyük üzüntü duyuyoruz. Bu durumu hemen telafi edeceğiz! [#POL-104] nolu müşteri memnuniyeti politikamız gereğince, ürün fotoğrafını iletmeniz durumunda kargo tutanağı beklemeden derhal yeni ürün çıkışı veya kesintisiz ücret iadesi sağlıyoruz.",
+    "grounded_template_neutral": "Hasarlı veya eksik teslimat bildirimleri [#POL-104] nolu güvence politikamız kapsamında incelenmektedir. Teslimattan sonraki 48 saat içinde ürün fotoğrafı ile iletilen taleplerde, birebir değişim veya ücret iadesi prosedürü anında devreye alınır."
+  },
+  {
+    "id": "POL-105",
+    "category": "Ödeme ve Kampanyalar",
+    "title": "Ödeme Hataları, Taksit ve İndirim Kuponları",
+    "keywords": ["ödeme", "kupon", "indirim", "taksit", "kod", "çalışmıyor", "hata", "çekildi", "provizyon", "kampanya", "karttan çekildi"],
+    "content": "Ödeme sırasında yaşanan bağlantı kopması veya mükerrer çekimlerde tutar 24 saat içinde otomatik iptal edilir. Kampanya kuponları tek kullanımlık olup birleştirilemez.",
+    "grounded_template_empathetic": "Ödeme veya indirim kodu aşamasında yaşadığınız aksaklık için özür dileriz. [#POL-105] nolu finansal güvenlik politikamız gereğince, kartınızdan mükerrer veya hatalı çekilen tutarlar sistem tarafından algılanıp 24 saat içinde otomatik olarak iptal edilir. Kupon sorununuz için hesabınıza yeni bir tanımlama yapıyoruz.",
+    "grounded_template_neutral": "Ödeme işlemleri ve kampanya kullanımları [#POL-105] nolu sistem politikamıza tabidir. Mükerrer provizyon işlemleri 24 saat içinde bankaya iade edilmekte olup, indirim kodlarının geçerlilik şartları sepet ekranında denetlenmektedir."
+  },
+  {
+    "id": "POL-106",
+    "category": "Teknik Destek ve Üyelik",
+    "title": "Hesap Erişim, Şifre ve Teknik Destek",
+    "keywords": ["şifre", "giremiyorum", "hesap", "üyelik", "sms", "gelmiyor", "doğrulama", "teknik", "hata", "sistem", "giriş yapamıyorum"],
+    "content": "Üye hesabı güvenliği için şifre sıfırlama linkleri 15 dakika geçerlidir. SMS doğrulaması ulaşmıyorsa operatör engeli denetlenmeli veya e-posta ile alternatif doğrulama talep edilmelidir.",
+    "grounded_template_empathetic": "Hesabınıza erişirken problem yaşamanızın ne kadar sinir bozucu olduğunu biliyoruz, hemen çözelim. [#POL-106] nolu hesap güvenlik politikamız doğrultusunda, güvenlik nedeniyle şifre sıfırlama bağlantıları 15 dakika geçerlidir. SMS doğrulaması alamıyorsanız sistem üzerinden e-posta doğrulama kanalını aktif ediyoruz.",
+    "grounded_template_neutral": "Hesap ve üyelik işlemleri [#POL-106] nolu güvenlik protokolüne göre yönetilmektedir. Şifre yenileme ve iki adımlı doğrulama (SMS/E-posta) adımlarında yaşanan aksaklıklar için güvenlik adımlarını takip edebilir veya destek ekibine bağlanabilirsiniz."
+  },
+  {
+    "id": "POL-107",
+    "category": "Garanti ve Servis",
+    "title": "Ürün Garantisi ve Teknik Servis Süreci",
+    "keywords": ["garanti", "servis", "bozuldu", "arızalı", "çalışmıyor", "tamir", "onarım", "bakım", "yıl", "garantisi"],
+    "content": "Elektronik ve mekanik ürünlerimiz 2 yıl resmi distribütör garantilidir. Arıza durumunda teknik servis inceleme süresi yasal olarak azami 20 iş günüdür; 10 iş gününü aşan onarımlarda ikame ürün sağlanır.",
+    "grounded_template_empathetic": "Satın aldığınız ürünün arızalanması nedeniyle yaşadığınız mağduriyet için çok üzgünüz. [#POL-107] nolu garanti ve servis politikamız kapsamında ürününüz 2 yıl tam garanti korumasındadır. Servis sürecini sizin için başlatıyoruz; onarım 10 iş gününü aşarsa size geçici ikame ürün temin edeceğiz.",
+    "grounded_template_neutral": "Ürün arıza ve servis prosedürleri [#POL-107] nolu yasal garanti politikamıza istinaden yürütülmektedir. Azami inceleme süresi 20 iş günü olup, yetkili servis ağı üzerinden ücretsiz onarım veya değişim raporu düzenlenmektedir."
+  },
+  {
+    "id": "POL-108",
+    "category": "Fatura ve Kurumsal",
+    "title": "Fatura Değişikliği, e-Arşiv ve Kurumsal Talepler",
+    "keywords": ["fatura", "kurumsal", "vergi", "tc", "e-fatura", "kesilmedi", "değişiklik", "şirket", "adres", "faturalandırma"],
+    "content": "Sipariş esnasında girilen fatura bilgileri (Bireysel/Kurumsal) e-Arşiv/e-Fatura yasal mevzuatı gereği sipariş onaylandıktan sonra sonradan değiştirilemez. Faturalar 24 saat içinde e-posta adresine iletilir.",
+    "grounded_template_empathetic": "Fatura işlemlerinizle ilgili yaşadığınız aksaklık için yardımcı olmayı çok isteriz. Ancak [#POL-108] nolu yasal faturalandırma politikamız ve Maliye Bakanlığı e-Arşiv mevzuatı gereği, onaylanan siparişlerin fatura vergi numarası sonradan değiştirilememektedir. Yeni siparişlerinizde kurumsal profilinizi önceden kaydetmenizi öneririz.",
+    "grounded_template_neutral": "Fatura düzenlemeleri [#POL-108] nolu mali mevzuat politikamıza tabidir. Sistemimiz e-Fatura/e-Arşiv entegrasyonu ile çalıştığından, sipariş anında beyan edilen fatura bilgileri üzerinde sonradan revizyon yapılamamaktadır."
+  }
+]
