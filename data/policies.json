@@ -1,0 +1,129 @@
+[
+  {
+    "id": "POL_KARGO_01",
+    "category": "kargo",
+    "title": "Kargo Gecikmesi ve Kayıp Paket İnceleme Prosedürü",
+    "text": "Sipariş verilen ürünler kargoya verildikten sonra standart teslimat süresi 1-3 iş günüdür. Kargonun 4 iş gününü aşması durumunda sistem üzerinden kargo takip şikayeti oluşturulur. Kargo firması 24 saat içinde paketin konumunu bildirmezse mağaza adına tazmin süreci başlatılır ve müşteriye dilerse ücretsiz yeni gönderim ya da ücret iadesi teklif edilir.",
+    "keywords": ["kargo", "gecikti", "gelmedi", "nerede", "teslimat", "gecikme", "surucu", "sube"]
+  },
+  {
+    "id": "POL_KARGO_02",
+    "category": "kargo",
+    "title": "Hasarlı Paket ve Kargo Hasar Tespit Tutanağı Zorunluluğu",
+    "text": "Dış ambalajı ezilmiş, yırtılmış veya ıslanmış paketleri teslim alırken kargo kuryesine 'Hasar Tespit Tutanağı' (Durum Tespit Zaptı) tutturulması zorunludur. Tutanak tutulmadan teslim alınan ve içerisindeki ürünün kırık/hasarlı olduğu sonradan bildirilen durumlarda kargo sigortası zararı karşılamamaktadır. Ancak ambalaj sağlam olup ürün içeriden hasarlıysa müşteriden 24 saat içinde net fotoğraflar talep edilir.",
+    "keywords": ["hasarli", "kirik", "ezik", "tutanak", "hasar tespit", "patlak", "kutusu ezilmis", "kurye"]
+  },
+  {
+    "id": "POL_KARGO_03",
+    "category": "kargo",
+    "title": "Yanlış Adrese Teslim veya Kuryenin Ulaşamaması",
+    "text": "Kurye adrese geldiğinde alıcıya ulaşamazsa paket en yakın dağıtım şubesinde 3 iş günü bekletilir. Alıcı şubeden teslim almazsa paket mağazamıza iade döner. Kargo şirketi sisteme 'adreste bulunamadı' notu düşmüşse kurye takip numarası ve şube adresi müşteriye iletilerek şubeden alımı rica edilir.",
+    "keywords": ["adreste yok", "subede", "subeden al", "ulasamadi", "yanlis adres", "kurye gelmedi"]
+  },
+  {
+    "id": "POL_IADE_01",
+    "category": "iade",
+    "title": "14 Günlük Yasal Koşulsuz Cayma Hakkı (6502 Sayılı Kanun)",
+    "text": "Müşteriler, 6502 sayılı Tüketicinin Korunması Hakkında Kanun uyarınca ürünü teslim aldıkları tarihten itibaren 14 gün içinde herhangi bir gerekçe göstermeksizin ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir. İade edilecek ürünün tekrar satılabilirliği bozulmamış, tüm aksesuarları ve faturası/irsaliyesi eksiksiz olmalıdır.",
+    "keywords": ["14 gun", "cayma hakki", "iade etmek istiyorum", "vazgectim", "kosulsuz iade", "yasal hak"]
+  },
+  {
+    "id": "POL_IADE_02",
+    "category": "iade",
+    "title": "Hijyen ve Sağlık Sebebiyle İadesi Kabul Edilmeyen Ürünler",
+    "text": "Mevzuat gereği iç giyim, mayo/bikini, küpe, kulak içi kulaklık, kozmetik ve kişisel bakım ürünlerinde koruma bandı/ambalaj açıldığı anda hijyen ve sağlık gerekçesiyle cayma hakkı ortadan kalkar. Bu ürünlerin iadesi ancak üretim hatası veya ayıplı mal tespiti durumunda kabul edilir.",
+    "keywords": ["hijyen", "ic giyim", "kozmetik", "kupe", "kulaklik", "ambalaji acilmis", "koruma bandi"]
+  },
+  {
+    "id": "POL_IADE_03",
+    "category": "iade",
+    "title": "Kullanılmış, Yıkanmış veya Etiketi Sökülmüş Ürün İade Reddi",
+    "text": "Deneme amacıyla giyilmek dışında dışarıda kullanılmış, yıkanmış, parfüm veya sigara kokusu sinmiş ya da orijinal marka etiketi koparılmış ürünlerin iadesi kesinlikle kabul edilmez. Mağazamıza bu şekilde gelen ürünler tutanak tutularak müşteriye karşı ödemeli geri kargolanır.",
+    "keywords": ["kullanilmis", "yikanmis", "etiket kopuk", "parfum kokusu", "giyilmis", "ikinci el", "kullandim", "etiketini kestim", "etiketi kestim", "giydim", "yikadim"]
+  },
+  {
+    "id": "POL_IADE_04",
+    "category": "iade",
+    "title": "Anlaşmalı İade Kargo Kodu ve Ücretsiz Gönderim",
+    "text": "Müşteriler iade gönderimlerini yalnızca mağazamızın anlaşmalı olduğu kargo firması ve sağlanan 9 haneli özel iade kodu ile yapmalıdır. Bu kodla yapılan gönderimlerde kargo ücreti mağazamızca karşılanır. Anlaşmasız kargo firmasıyla karşı ödemeli gönderilen paketler şubeden teslim alınmaz.",
+    "keywords": ["iade kodu", "anlasmali kargo", "kargo ucreti", "ucretsiz kargo", "nasil gonderecegim"]
+  },
+  {
+    "id": "POL_IADE_05",
+    "category": "iade",
+    "title": "Para İadesinin Banka Hesabına veya Kredi Kartına Yansıma Süresi",
+    "text": "İade edilen ürün mağaza depomuza ulaşıp onaylandıktan sonra 24 saat içinde bankaya iade talimatı verilir. İade tutarının müşterinin ekstresine yansıması bankaların takas prosedürlerine bağlı olarak kredi kartlarında 1-3 iş günü, banka (debit) kartlarında ise 2-7 iş günü sürebilmektedir. Taksitli alışverişlerde bankalar iadeyi ekstreye taksitli olarak yansıtabilir.",
+    "keywords": ["para yatmadi", "ucret iadesi", "hesaba gecmedi", "kartima yansimadi", "parami verin", "taksit iadesi", "iadem", "hesabima gecmedi", "ne zaman gecer"]
+  },
+  {
+    "id": "POL_URUN_01",
+    "category": "urun",
+    "title": "Ayıplı Mal, Fabrikasyon Hata ve Birebir Değişim",
+    "text": "Ürünün dikiş hatası, taban ayrılması, yırtık kumaş veya çalışmayan elektronik aksam gibi üretim kaynaklı kusurlu olması durumunda müşteri hiçbir kargo ücreti ödemeden birebir değişim veya para iadesi talep edebilir. Kusurlu ürün bildirimi teslimattan itibaren 30 gün içinde yapılmalıdır.",
+    "keywords": ["ayipli", "kusurlu", "defolu", "bozuk", "dikisi sokuk", "tabani ayrilmis", "degisim", "sokuldu", "sokuk", "tabani ayrildi"]
+  },
+  {
+    "id": "POL_URUN_02",
+    "category": "urun",
+    "title": "Yetkili Servis ve Garanti Belgesi Kapsamı",
+    "text": "Elektronik ve küçük ev aletleri kategorisindeki ürünler 2 yıl resmi distribütör garantisi altındadır. Kullanım sonrası arızalanan cihazlar için müşterinin doğrudan yetkili servis istasyonuna başvurması gereklidir. Yetkili servisin 'Değişim/İade Uygundur' raporu vermesi halinde mağazamız anında iadeyi tamamlar.",
+    "keywords": ["garanti", "yetkili servis", "servis raporu", "arizalandi", "tamir", "distributor"]
+  },
+  {
+    "id": "POL_URUN_03",
+    "category": "urun",
+    "title": "Beden Değişimi ve Stok Uyumsuzluğu Prosedürü",
+    "text": "Müşterinin beden veya numara uymaması sebebiyle değişim istemesi durumunda, istenen beden mağaza stoklarında mevcutsa ücretsiz kargo kodu ile değişim yapılır. Stok tükenmişse müşteriye aynı tutarda indirim kuponu tanımlanabilir veya ücret iadesi uygulanır.",
+    "keywords": ["beden uymadi", "kucuk geldi", "buyuk geldi", "numara degisimi", "stokta var mi"]
+  },
+  {
+    "id": "POL_TEKNIK_01",
+    "category": "teknik",
+    "title": "Ödeme Hataları ve Mükerrer (Çift) Çekim Sorunları",
+    "text": "Sipariş oluşturma esnasında banka 3D Secure ekranında zaman aşımı veya bağlantı kopması yaşanırsa sipariş oluşmadan provizyonda çekim görünebilir. Mükerrer çekim durumunda banka provizyon referans kodu incelenir ve askıda kalan tutar 24 saat içinde sistemimizce otomatik iptal/iade edilir.",
+    "keywords": ["cift cekti", "iki kere cekildi", "kartimdan para gitti siparis yok", "3d secure", "odeme hatasi", "iki kez cekildi"]
+  },
+  {
+    "id": "POL_TEKNIK_02",
+    "category": "teknik",
+    "title": "Giriş Problemleri, Şifre ve SMS Doğrulama Kodu",
+    "text": "Kullanıcı hesabına giriş yapılamaması veya SMS doğrulama kodunun gelmemesi durumunda operatör SMS engeli kontrol edilmeli veya spam klasörüne bakılmalıdır. Çözülmezse mağaza yöneticisi müşterinin kayıtlı e-posta adresine tek kullanımlık güvenli giriş bağlantısı gönderir.",
+    "keywords": ["sms gelmiyor", "sifremi unuttum", "giris yapamiyorum", "kod gelmedi", "hesap kilitlendi"]
+  },
+  {
+    "id": "POL_TEKNIK_03",
+    "category": "teknik",
+    "title": "İndirim Kuponu, Sepet Kampanyası ve Sepet Alt Limiti",
+    "text": "Kupon kodları belirli alt limit ve kategori şartlarına bağlıdır. Birden fazla kupon aynı sepette birleştirilemez. İptal veya iade edilen siparişlerde kullanılan kuponlar tek kullanımlık değilse hesaba 1 saat içinde otomatik yeniden tanımlanır.",
+    "keywords": ["kupon calismiyor", "indirim uygulanmadi", "sepet alt limiti", "kampanya kodu"]
+  },
+  {
+    "id": "POL_GENEL_01",
+    "category": "genel",
+    "title": "Mağaza Çalışma Saatleri ve İletişim Kanalları",
+    "text": "Mağazamız müşteri destek ekibi hafta içi ve Cumartesi günleri 09:00 - 19:00 saatleri arasında aktif hizmet vermektedir. Mesai saatleri dışında iletilen mesajlar ilk iş günü sabahında öncelik sırasına göre yanıtlanır. Acil durumlar için WhatsApp iş hattımız devrededir.",
+    "keywords": ["calisma saatleri", "mesai", "telefon", "iletisim", "ulasamiyorum", "hafta sonu acik mi"]
+  },
+  {
+    "id": "POL_GENEL_02",
+    "category": "genel",
+    "title": "Müşteri Memnuniyeti ve Teşekkür Geri Bildirimleri",
+    "text": "Olumlu geri bildirimleriniz ve teşekkürleriniz mağaza çalışanlarımızın motivasyonunu artırmaktadır. Memnun kaldığınız alışverişleri ürün ve satıcı değerlendirme sayfasından 5 yıldız vererek taçlandırabilir, diğer alıcılara rehber olabilirsiniz.",
+    "keywords": ["tesekkur", "harika", "cok memnun kaldim", "hizli teslimat", "eline saglik", "tebrikler"]
+  },
+  {
+    "id": "POL_GENEL_03",
+    "category": "genel",
+    "title": "Müşteri Karşılama ve Selamlama",
+    "text": "Müşterinin 'merhaba', 'günaydın', 'kolay gelsin', 'nasılsınız' gibi genel selamlama ve hal hatır mesajları nazik ve sıcak bir dille karşılanır. Sipariş, kargo veya ürünle ilgili yardımcı olunabilecek bir konu olup olmadığı doğrudan sorulur, gereksiz kural veya mesai detayı verilmez.",
+    "keywords": ["merhaba", "selam", "selamlar", "gunaydin", "iyi gunler", "iyi aksamlar", "nasilsiniz", "nasilsin", "kolay gelsin", "merhabalar", "naber"]
+  },
+  {
+    "id": "POL_GENEL_04",
+    "category": "genel",
+    "title": "Kapsam Dışı İstek ve Mağaza Yönlendirmesi",
+    "text": "Mağaza veya e-ticaret süreçleriyle (sipariş, kargo, iade, ürün kalitesi) ilgisi olmayan sohbet veya genel bilgi taleplerinde müşteriye mağaza destek asistanı olunduğu nazikçe hatırlatılır ve yalnızca mağaza konularında destek verildiği belirtilir.",
+    "keywords": ["hava durumu", "fikra anlat", "siir yaz", "futbol", "mac sonucu", "dolar kuru", "yemek tarifi", "alakasiz", "sohbet et"]
+  }
+]
+

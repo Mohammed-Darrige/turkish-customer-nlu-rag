@@ -1,0 +1,12 @@
+services:
+  rag-assistant:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - RAG_ENABLE_DENSE=1
+      - RAG_EMBEDDING_MODEL=intfloat/multilingual-e5-small
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - OLLAMA_MODEL=gemma3:4b
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

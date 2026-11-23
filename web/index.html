@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turkish Customer Support RAG · Voice &amp; Text Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-badge">RAG</span>
+        <div>
+          <h1>Müşteri Destek Sesli &amp; Metin Asistanı</h1>
+          <p class="subtitle">BM25 + Multilingual-E5 Hibrit Arama · Politika Doğrulamalı Yanıt</p>
+        </div>
+      </div>
+      <div class="status-bar" id="statusBar" aria-live="polite">
+        <span class="pill" id="pillRag">RAG: yükleniyor…</span>
+        <span class="pill" id="pillNlu">NLU: yükleniyor…</span>
+        <span class="pill" id="pillLlm">LLM: kontrol ediliyor…</span>
+      </div>
+    </header>
+
+    <section class="controls-bar">
+      <div class="control-group">
+        <label for="modeSelect">Arama Modu</label>
+        <select id="modeSelect">
+          <option value="hybrid" selected>Hybrid (BM25 + E5 + RRF)</option>
+          <option value="bm25">BM25 Only</option>
+          <option value="dense">Dense E5 Only</option>
+        </select>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="useLlmToggle" checked>
+        <span>Yerel Ollama LLM (yoksa şablon)</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="autoSpeakToggle">
+        <span>Yanıtı Sesli Oku (TTS)</span>
+      </label>
+    </section>
+
+    <div class="samples" id="samples" aria-label="Örnek sorular">
+      <button type="button" class="sample-btn" data-q="Kargom 5 gündür gelmedi, nerede?">Kargo gecikmesi</button>
+      <button type="button" class="sample-btn" data-q="14 gün dolmadan cayma hakkımı kullanmak istiyorum">14 gün iade</button>
+      <button type="button" class="sample-btn" data-q="İç çamaşırının paketini açtım iade edebilir miyim?">Hijyen istisnası</button>
+      <button type="button" class="sample-btn" data-q="Kartımdan iki kere para çekildi">Çift çekim</button>
+      <button type="button" class="sample-btn" data-q="Ürünün dikişleri sökük geldi değişim yapabilir miyim?">Ayıplı ürün</button>
+    </div>
+
+    <main class="chat-thread" id="thread" aria-live="polite">
+      <div class="empty-state" id="emptyState">
+        <p>Türkçe müşteri sorunuzu yazın veya mikrofon düğmesiyle sesli sorun.</p>
+        <p class="muted">Her yanıt, ilgili mağaza politikası ve sayısal doğrulama bilgisiyle birlikte gelir.</p>
+      </div>
+    </main>
+
+    <form class="composer" id="composer" autocomplete="off">
+      <textarea id="messageInput" rows="1" placeholder="Müşteri sorusunu yazın veya konuşun…" aria-label="Müşteri sorusu"></textarea>
+      <button type="button" class="btn btn-secondary" id="micBtn" title="Sesle yaz (tr-TR)">🎙️ Konuş</button>
+      <button type="submit" class="btn btn-primary" id="sendBtn">Gönder</button>
+    </form>
+    <p class="voice-note" id="voiceNote"></p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

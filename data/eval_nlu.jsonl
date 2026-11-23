@@ -1,0 +1,20 @@
+{"text": "Siparişim 5 gündür aktarma merkezinde çakılı kaldı kurye hiçbir şekilde bilgi vermiyor.", "expected_kategori": "kargo", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "Kutusu sağlamdı ama içindeki seramik kupanın kulpu kırık çıktı nasıl değişim yapabilirim?", "expected_kategori": "urun", "expected_niyet": "sikayet", "difficulty": "hard_boundary"}
+{"text": "14 gün dolmadan cayma hakkımı kullanmak istiyorum anlaşmalı iade kodunuz nedir acaba?", "expected_kategori": "iade", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}
+{"text": "Dün aldığım iç çamaşırının paketini açtım ama denemedim iade kabul ediyor musunuz?", "expected_kategori": "iade", "expected_niyet": "bilgi_talebi", "difficulty": "adversarial_hygiene"}
+{"text": "Kartımdan tek çekim yerine iki kere para kesilmiş mobil uygulamanız hata verdi.", "expected_kategori": "teknik", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "Mağazanız Cumartesi günleri kaça kadar açık telefonla sipariş verebiliyor muyuz?", "expected_kategori": "genel", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}
+{"text": "Harika paketlenmişti küçük hediye için de çok teşekkürler Elazığ esnafına selamlar!", "expected_kategori": "genel", "expected_niyet": "tesekkur", "difficulty": "normal"}
+{"text": "Ürünün dikişleri sökük geldi ve kumaşı çok kalitesiz paramı derhal kartıma iade edin.", "expected_kategori": "urun", "expected_niyet": "sikayet", "difficulty": "multi_intent"}
+{"text": "Kargo kuryesi zili çalmadan sisteme evde yok yazmış şubeye gitmek istemiyorum.", "expected_kategori": "kargo", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "İade ettiğim ürün dün deponuza ulaşmış para iadesi bankaya ne zaman talimat verilir?", "expected_kategori": "iade", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}
+{"text": "Sms doğrulama kodu bir türlü telefonuma gelmiyor operatör engelim de yok.", "expected_kategori": "teknik", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "Kupon kodu sepette indirim uygulamıyor alt limit 500 TL yazıyor sepetim 650 TL.", "expected_kategori": "teknik", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "Ayakkabının sağ teki 42 sol teki 43 numara gelmiş şaka mısınız siz acil değişim!", "expected_kategori": "urun", "expected_niyet": "sikayet", "difficulty": "hard_anomaly"}
+{"text": "Kargonun teslimat adresini sonradan değiştirebiliyor muyuz il dışına çıkmam gerekti.", "expected_kategori": "kargo", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}
+{"text": "Gerçekten çok ilgili bir satıcısınız her soruma anında döndünüz helal olsun.", "expected_kategori": "genel", "expected_niyet": "tesekkur", "difficulty": "normal"}
+{"text": "Tüketici hakem heyetine başvurdum iade paramı 10 gündür yatırmadınız rezalet!", "expected_kategori": "iade", "expected_niyet": "sikayet", "difficulty": "extreme_negative"}
+{"text": "Siparişimi iptal etmek istiyorum ama ekranda iptal butonu aktif değil.", "expected_kategori": "teknik", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}
+{"text": "Gömleğin rengi fotoğraftakinden çok farklı lila yerine koyu mor gelmiş.", "expected_kategori": "urun", "expected_niyet": "sikayet", "difficulty": "normal"}
+{"text": "Kurye kapıya bırakmış paket sırılsıklam olmuş içindeki mont ıslanmış.", "expected_kategori": "kargo", "expected_niyet": "sikayet", "difficulty": "hard_boundary"}
+{"text": "İade kargo ücretini kim karşılıyor ben ödemek zorunda mıyım?", "expected_kategori": "iade", "expected_niyet": "bilgi_talebi", "difficulty": "normal"}

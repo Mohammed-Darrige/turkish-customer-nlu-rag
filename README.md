@@ -1,79 +1,95 @@
-# Enterprise-Grade Turkish NLU + RAG Pipeline
+# Turkish Customer Support Voice & Text RAG Assistant
 
-A production-ready **Natural Language Understanding (NLU) and Retrieval-Augmented Generation (RAG)** pipeline specifically engineered for automating Turkish customer support workflows.
+A focused, reproducible Turkish e-commerce customer support assistant combining **Okapi BM25**, **Multilingual-E5 Dense Retrieval**, **Reciprocal Rank Fusion (RRF)**, **rule-based Turkish NLU**, **numeric grounding verification** for local Ollama models, and a **Voice + Text Web UI**.
 
-Unlike standard English RAG tutorials that rely on simple wrapper prompts, this architecture features an end-to-end **two-stage classification and vector routing engine** designed to handle complex Turkish agglutination, morphological nuances, and sentiment polarity with high accuracy and zero hallucination.
+## Architecture
 
----
-
-## 🏗️ System Architecture & Engineering Philosophy
-
-Our pipeline is built on a modular, hybrid architecture designed for both large-scale enterprise deployments and high-performance serverless environments:
-
-### 1. Two-Stage NLU Classification (Intent & Sentiment)
-- **Agglutination-Aware Processing:** Custom Turkish tokenization and TF-IDF vectorization tuned to preserve root meanings and morphological suffixes.
-- **LinearSVC Classification Engine:** Categorizes incoming customer tickets into granular domain buckets (`kargo_teslimat`, `iade_degisim`, `fiyat_kampanya`, `destek_teknik`, `genel`) while simultaneously evaluating sentiment polarity (Empathetic vs. Neutral routing).
-
-### 2. Information Retrieval & Grounding (RAG Engine)
-- **Lexical BM25-Lite & Category Boosting:** Uses NLU intent outputs to prune irrelevant knowledge base sectors, applying lexical overlap scoring to retrieve the most mathematically relevant corporate policy clause (`#POL-10X`).
-- **Zero-Hallucination Response Synthesis:** Rather than allowing generative models to invent policies, the engine synthesizes grounded responses directly from verified institutional ledgers, switching dynamically between empathetic templates for frustrated users and neutral templates for informative requests.
-
-### 3. Enterprise vs. Serverless Architectural Transparency
-- **Full Research Environment:** In our local research and training environment, the pipeline operates on a full **15.8 GiB BERTurk (HuggingFace)** transformer model coupled with a persistent **ChromaDB vector space** for deep semantic clustering.
-- **Serverless Production Engine:** To achieve zero cold-start latency and operate flawlessly within cloud serverless memory limits (e.g., Vercel 512MB runtime), we engineered this lightweight **LinearSVC + BM25-Lite** engine. It delivers over 98% intent accuracy while executing inference in milliseconds without heavy GPU dependencies.
-
----
-
-## 🛠️ Technology Stack
-
-- **Machine Learning:** Python, Scikit-Learn, LinearSVC, TF-IDF, NumPy, Joblib
-- **Retrieval Engine:** Custom BM25-Lite Lexical Overlap & NLU Category Boosting
-- **Backend Service:** TypeScript, Next.js App Router API Handlers, Node.js Child Process Execution
-- **Knowledge Base:** Structured Institutional Policy Database (`ml-policies.json`)
-
----
-
-## 📂 Repository Structure
-
-```text
-├── data/
-│   └── ml-policies.json      # Canonical institutional knowledge base & grounded templates
-├── src/
-│   ├── predict.py            # Python NLU inference engine (LinearSVC + TF-IDF)
-│   └── route.ts              # TypeScript API Gateway & RAG Retrieval Routing
-├── tests/
-│   └── test_rag.ts           # 10-scenario regression & accuracy verification suite
-├── requirements.txt          # Python dependencies
-└── README.md                 # Project documentation
+```mermaid
+flowchart LR
+    U[User Voice / Text] -->|Web Speech API tr-TR or Text| API[FastAPI /api/chat]
+    API --> NLU[Turkish NLU<br/>Rule-based or HF Env]
+    API --> BM25[Okapi BM25<br/>k1=1.5, b=0.75]
+    API --> E5[Dense Retriever<br/>multilingual-e5-small]
+    BM25 --> RRF[RRF Fusion k=60]
+    E5 --> RRF
+    RRF --> GEN[Grounded Reply Generator<br/>Ollama or Policy Template]
+    GEN -->|Numeric Grounding Guard| UI[Chat + Retrieval Inspector + TTS]
 ```
 
----
+## Scope & Design Decisions
 
-## 🚀 Quick Start & Verification
+- **Focused RAG + Voice Assistant:** Handles customer support Q&A over a curated store policy corpus (`data/policies.json`) with voice input/output and a transparent retrieval/NLU inspector. Unrelated modules (tabular fraud/risk scoring, fake e-commerce storefront, seller desk) were intentionally excluded to keep the codebase clean and verifiable.
+- **Honest Backend Reporting:** Every `/api/health` and `/api/chat` response reports the exact active backends (`rule_based_turkish_nlu`, `sentence_transformers:intfloat/multilingual-e5-small` or `disabled`, `ollama:<model>` or `policy_template_fallback`).
+- **Numeric Grounding Guard:** When local Ollama is active, replies are checked with `ungrounded_numbers()` against the retrieved policy text and user message. If an unverified number (days, amounts, codes) appears, it retries once with a stricter prompt and otherwise falls back to the policy template.
+- **No Hardcoded Local Paths:** Optional transformer NLU (`NLU_CATEGORY_MODEL`, `NLU_INTENT_MODEL`) and Cross-Encoder reranking (`RAG_RERANKER_MODEL`) are configured strictly via environment variables.
 
-### 1. Install Dependencies
+## Measured Benchmarks (`docs/benchmark.md`)
+
+All metrics below are measured directly by [`scripts/evaluate.py`](scripts/evaluate.py) on Windows (AMD64), Python 3.13.12, CPU-only (`intfloat/multilingual-e5-small` + `rule_based_turkish_nlu`):
+
+### 1. Policy-Level Retrieval Ablation (`data/eval_retrieval.jsonl`, N=21)
+
+| Mode | Policy Hit@1 | Policy Hit@3 | MRR@3 | Mean Latency (ms) |
+| :--- | :---: | :---: | :---: | :---: |
+| `bm25` | 81.0% (17/21) | 95.2% (20/21) | 0.865 | 0.24 |
+| `dense` | 71.4% (15/21) | 85.7% (18/21) | 0.786 | 9.58 |
+| `hybrid` | 85.7% (18/21) | 90.5% (19/21) | 0.881 | 8.96 |
+
+### 2. NLU Classification (`data/eval_nlu.jsonl`, N=20)
+
+| Task | Macro F1 | Macro Precision | Macro Recall | Mean Latency (ms) |
+| :--- | :---: | :---: | :---: | :---: |
+| Category (5 classes) | 69.8% | 76.4% | 70.3% | 0.016 |
+| Intent (3 classes) | 81.4% | 86.1% | 84.8% | — |
+
+## Quick Start
+
+### Local Python
+
 ```bash
 pip install -r requirements.txt
-npm install -g ts-node typescript @types/node
+uvicorn src.server:app --host 127.0.0.1 --port 8000
 ```
 
-### 2. Run Python Inference Directly
+Open `http://127.0.0.1:8000` in Chrome or Edge for full Turkish voice input (STT) and speech output (TTS).
+
+To run without downloading/loading the dense embedding model (BM25-only mode):
+
 ```bash
-python src/predict.py "Kargom 5 gündür yolda görünüyor ama elime ulaşmadı, ne yapmam lazım?"
-```
-**Expected Output:**
-```json
-{
-  "sentiment": "negative",
-  "category": "kargo_teslimat"
-}
+RAG_ENABLE_DENSE=0 uvicorn src.server:app --host 127.0.0.1 --port 8000
 ```
 
-### 3. Run Automated Regression Tests
-Execute our comprehensive verification suite covering 5 UI fixtures and 5 realistic customer edge cases:
+### Docker
+
 ```bash
-ts-node tests/test_rag.ts
+docker compose up --build
 ```
 
----
-*Engineered by **Mohammed Darrige** — Fırat University AI & Data Engineering.*
+### Optional Local LLM (Ollama)
+
+If [Ollama](https://ollama.com/) is running locally with `gemma3:4b` (or any model configured via `OLLAMA_MODEL`), `/api/chat` will automatically use it for response phrasing while enforcing numeric grounding. Otherwise, it uses the deterministic policy template fallback.
+
+## Testing & Evaluation
+
+```bash
+# Lightweight CI suite (BM25 + NLU + Grounding + FastAPI)
+RAG_ENABLE_DENSE=0 pytest -v
+
+# Full suite (includes multilingual-e5-small)
+pytest -v
+
+# Regenerate docs/benchmark.md from live evaluation
+python scripts/evaluate.py
+```
+
+## API Endpoints
+
+- `GET /api/health` — Readiness, policy count, active NLU/RAG/Ollama backends.
+- `GET /api/policies` — Returns all 18 store policies from `data/policies.json`.
+- `POST /api/chat` — Body: `{"message": "...", "top_k": 3, "retrieval_mode": "hybrid", "use_llm": true}`.
+
+## Limitations
+
+- **Corpus Scale:** The policy corpus contains 18 Turkish e-commerce support policies (`data/policies.json`). It is a focused domain demonstration, not a multi-thousand-document enterprise index.
+- **Default NLU:** Without `NLU_CATEGORY_MODEL` and `NLU_INTENT_MODEL` set, NLU uses deterministic Turkish keyword/morphological rules (`69.8%` Category Macro F1 on the 20-query held-out set).
+- **Voice Support:** Speech-to-Text (`SpeechRecognition`) and Text-to-Speech (`speechSynthesis`) rely on browser Web Speech APIs (`tr-TR`), which are best supported in Chromium-based browsers.
