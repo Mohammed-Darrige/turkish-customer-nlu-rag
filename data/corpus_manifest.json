@@ -1,7 +1,7 @@
 {
   "total_chunks": 213,
-  "total_tokens": 36342,
-  "chunks_jsonl_sha256": "d14ae28eb6a9f9a6bb9d77497a3a289233e33886c82477a0f10ceb559b62d896",
+  "total_tokens": 37181,
+  "chunks_jsonl_sha256": "e5e5cf8e76298492080a45328d4bd0371fcbca3442a0f2bf7ac11af3d3e11844",
   "per_doc_chunk_counts": {
     "kanun_6502": 118,
     "mesafeli_sozlesmeler": 30,
@@ -51,5 +51,6 @@
       "char_count": 36945
     }
   },
-  "store_ops_faq_sha256": "fbdf19184e89fc1005d0bbda73ffedb263179556a11c9bb5f1c013f3924f4e47"
+  "store_ops_faq_sha256": "fbdf19184e89fc1005d0bbda73ffedb263179556a11c9bb5f1c013f3924f4e47",
+  "article_contexts_sha256": "62b5cd239fe3dddd5266588c2b5306008dcf739752fbac7e16aa0f8b2842843e"
 }

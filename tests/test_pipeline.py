@@ -63,6 +63,19 @@ def test_bm25_and_metadata_filtering(monkeypatch):
     assert all(ev["doc_id"] == "store_ops_faq" and ev["lang"] == "tr" for ev in filtered["top_evidences"])
 
 
+def test_snowball_stemming_and_maxp_dedup(monkeypatch):
+    from src.stores.memory_store import tokenize_text
+
+    monkeypatch.setenv("RAG_ENABLE_DENSE", "0")
+    assert tokenize_text("tüketicinin") == tokenize_text("tüketici")
+    assert tokenize_text("iadesini") == ["iade"]
+
+    engine = HybridRAGEngine()
+    res = engine.retrieve("tüketici hakem heyeti kararına itiraz", top_k=5, mode="lexical")
+    tags = [ev["citation_tag"] for ev in res["top_evidences"]]
+    assert len(tags) == len(set(tags)), f"Duplicate citation_tags found in top-k: {tags}"
+
+
 def test_numeric_and_citation_grounding():
     assert ungrounded_numbers("14 gün içinde iade edebilirsiniz.", "14 gün içinde cayma hakkı.") == []
     assert ungrounded_numbers("30 gün içinde iade edebilirsiniz.", "14 gün içinde cayma hakkı.") == ["30"]
@@ -107,6 +120,8 @@ def test_api_chat_and_abstention(monkeypatch):
     with TestClient(app) as client:
         h = client.get("/api/health")
         assert h.status_code == 200
+        assert h.headers.get("X-Request-ID")
+        assert h.headers.get("X-Process-Time-Ms")
         assert h.json()["chunk_count"] >= 200
         assert h.json()["store_backend"] == "in_memory"
 
@@ -139,3 +154,9 @@ def test_api_chat_and_abstention(monkeypatch):
         assert trap.status_code == 200
         assert trap.json()["abstained"] is True
         assert trap.json()["backends"]["generation"] == "abstention_guard"
+
+        m = client.get("/api/metrics")
+        assert m.status_code == 200
+        m_body = m.json()
+        assert m_body["chat_requests_total"] >= 2
+        assert m_body["abstentions_total"] >= 1

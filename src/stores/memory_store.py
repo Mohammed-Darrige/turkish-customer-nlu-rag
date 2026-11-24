@@ -26,11 +26,29 @@ TURKISH_STOPWORDS = {
 }
 
 
+_TR_STEMMER: Any = None
+
+
+def _get_tr_stemmer() -> Any:
+    global _TR_STEMMER
+    if _TR_STEMMER is None:
+        try:
+            import snowballstemmer
+
+            _TR_STEMMER = snowballstemmer.stemmer("turkish")
+        except Exception:
+            _TR_STEMMER = False
+    return _TR_STEMMER if _TR_STEMMER is not False else None
+
+
 def tokenize_text(text: str) -> list[str]:
-    """Normalizes Turkish/Latin text and returns filtered alphanumeric tokens."""
+    """Normalizes Turkish/Latin text, applies Snowball Turkish stemming, and filters stopwords."""
     norm = normalize_turkish(text)
-    words = re.findall(r"[\w]+", norm, flags=re.UNICODE)
-    return [w for w in words if len(w) > 1 and w not in TURKISH_STOPWORDS]
+    words = [w for w in re.findall(r"[\w]+", norm, flags=re.UNICODE) if len(w) > 1 and w not in TURKISH_STOPWORDS]
+    stemmer = _get_tr_stemmer()
+    if stemmer is not None and words:
+        return stemmer.stemWords(words)
+    return words
 
 
 class InMemoryStore:

@@ -32,10 +32,11 @@ os.environ.setdefault("HF_DEACTIVATE_ASYNC_LOAD", "1")
 ROOT_DIR = Path(__file__).resolve().parents[1]
 CHUNKS_PATH = ROOT_DIR / "data" / "chunks.jsonl"
 DEFAULT_EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
+DEFAULT_RERANKER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
 RRF_K = 60
-CE_WEIGHT = 0.5
 DEFAULT_ABSTAIN_DENSE_THRESHOLD = float(os.getenv("RAG_ABSTAIN_DENSE_THRESHOLD", "0.845"))
 DEFAULT_ABSTAIN_LEXICAL_THRESHOLD = float(os.getenv("RAG_ABSTAIN_LEXICAL_THRESHOLD", "2.0"))
+DEFAULT_ABSTAIN_RERANK_THRESHOLD = float(os.getenv("RAG_ABSTAIN_RERANK_THRESHOLD", "-1.504"))
 
 
 def load_chunks_jsonl(path: Path = CHUNKS_PATH) -> list[DocumentChunk]:
@@ -121,7 +122,11 @@ class HybridRAGEngine:
         self._init_reranker()
 
     def _init_reranker(self) -> None:
+        if os.getenv("RAG_ENABLE_DENSE", "1") == "0":
+            return
         reranker_id = os.getenv("RAG_RERANKER_MODEL", "").strip()
+        if not reranker_id and os.getenv("RAG_ENABLE_RERANKER", "0") == "1":
+            reranker_id = DEFAULT_RERANKER_MODEL
         if not reranker_id:
             return
         try:
@@ -133,14 +138,35 @@ class HybridRAGEngine:
             self.reranker_model = None
             self.reranker_name = None
 
+    @staticmethod
+    def _deduplicate_by_citation(hits: list[StoreHit]) -> list[StoreHit]:
+        """MaxP deduplication: retain only the highest-ranked chunk per citation_tag."""
+        seen: set[str] = set()
+        deduped: list[StoreHit] = []
+        for h in hits:
+            tag = h["chunk"]["citation_tag"]
+            if tag not in seen:
+                seen.add(tag)
+                deduped.append(h)
+        return deduped
+
     def _evaluate_abstention(
         self,
         query: str,
         top_hit: StoreHit | None,
         mode: RetrievalMode,
+        top_rerank_score: float | None = None,
     ) -> tuple[bool, str | None]:
         if top_hit is None:
             return True, "no_candidates"
+
+        if mode == "hybrid_rerank" and top_rerank_score is not None:
+            if top_rerank_score < DEFAULT_ABSTAIN_RERANK_THRESHOLD:
+                return (
+                    True,
+                    f"low_rerank_logit(score={top_rerank_score:.3f}<{DEFAULT_ABSTAIN_RERANK_THRESHOLD})",
+                )
+            return False, None
 
         q_tokens = set(tokenize_text(query))
         c = top_hit["chunk"]
@@ -190,23 +216,27 @@ class HybridRAGEngine:
 
         t_retrieval = (time.perf_counter() - t0) * 1000
 
+        hits = self._deduplicate_by_citation(hits)
+
         rerank_scores: dict[str, float] = {}
         t_rerank_start = time.perf_counter()
         if normalized_mode == "hybrid_rerank" and self.reranker_model is not None and hits:
             pairs = [[query, f"{h['chunk']['title']}: {h['chunk']['content']}"] for h in hits]
             ce_raw = np.asarray(self.reranker_model.predict(pairs), dtype=float)
-            ce_z = (ce_raw - ce_raw.mean()) / (ce_raw.std() + 1e-6)
-            scored: list[tuple[float, StoreHit, float]] = []
-            for h, raw_s, z_s in zip(hits, ce_raw, ce_z):
-                combined = h["rrf_score"] * 10.0 + CE_WEIGHT * float(z_s)
-                scored.append((combined, h, float(raw_s)))
-            scored.sort(key=lambda x: x[0], reverse=True)
-            hits = [item[1] for item in scored]
-            rerank_scores = {item[1]["chunk"]["chunk_id"]: round(item[2], 4) for item in scored}
+            scored: list[tuple[float, float, StoreHit]] = [
+                (float(raw_s), h["rrf_score"], h)
+                for h, raw_s in zip(hits, ce_raw)
+            ]
+            scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            hits = [item[2] for item in scored]
+            rerank_scores = {item[2]["chunk"]["chunk_id"]: round(item[0], 4) for item in scored}
         t_rerank = (time.perf_counter() - t_rerank_start) * 1000
 
         top_hit = hits[0] if hits else None
-        abstained, abstention_reason = self._evaluate_abstention(query, top_hit, normalized_mode)
+        top_rerank = rerank_scores.get(top_hit["chunk"]["chunk_id"]) if top_hit else None
+        abstained, abstention_reason = self._evaluate_abstention(
+            query, top_hit, normalized_mode, top_rerank_score=top_rerank
+        )
 
         q_tokens = set(tokenize_text(query))
         evidences: list[RetrievedEvidence] = []

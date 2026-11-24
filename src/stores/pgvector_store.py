@@ -7,12 +7,13 @@ inside PostgreSQL 16.
 """
 from __future__ import annotations
 
+import os
 from typing import Any
 
 from src.contracts import DocumentChunk, RetrievalFilter
 from src.stores.base import StoreHit
 
-EMBEDDING_DIM = 384
+EMBEDDING_DIM = int(os.getenv("RAG_EMBEDDING_DIM", "384"))
 
 SCHEMA_SQL = f"""
 CREATE EXTENSION IF NOT EXISTS vector;

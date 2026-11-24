@@ -28,17 +28,21 @@ from src.ingestion.fetcher import (
 CHUNKS_PATH = ROOT_DIR / "data" / "chunks.jsonl"
 MANIFEST_PATH = ROOT_DIR / "data" / "corpus_manifest.json"
 STORE_OPS_PATH = RAW_DIR / "store_ops_faq.json"
+CONTEXTS_PATH = RAW_DIR / "article_contexts.json"
 
 
 def build_corpus(fetch: bool = False) -> dict[str, Any]:
     provenance = ensure_raw_sources(fetch=fetch, raw_dir=RAW_DIR)
+    contexts: dict[str, str] = {}
+    if CONTEXTS_PATH.exists():
+        contexts = json.loads(CONTEXTS_PATH.read_text(encoding="utf-8"))
 
     all_chunks = []
     per_doc_counts: dict[str, int] = {}
 
     for spec in LEGAL_SOURCES:
         raw_text = (RAW_DIR / spec.raw_filename).read_text(encoding="utf-8")
-        doc_chunks = chunk_legal_document(raw_text, spec)
+        doc_chunks = chunk_legal_document(raw_text, spec, contexts=contexts)
         all_chunks.extend(doc_chunks)
         per_doc_counts[spec.doc_id] = len(doc_chunks)
 
@@ -68,6 +72,7 @@ def build_corpus(fetch: bool = False) -> dict[str, Any]:
         "per_doc_chunk_counts": per_doc_counts,
         "sources": provenance,
         "store_ops_faq_sha256": sha256_file(STORE_OPS_PATH) if STORE_OPS_PATH.exists() else None,
+        "article_contexts_sha256": sha256_file(CONTEXTS_PATH) if CONTEXTS_PATH.exists() else None,
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",

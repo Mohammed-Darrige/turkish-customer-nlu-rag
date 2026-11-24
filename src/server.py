@@ -6,16 +6,27 @@ Run locally:
 """
 from __future__ import annotations
 
+import json
+import logging
+import time
+import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from src import generator, nlu, rag_engine
 from src.contracts import CategoryType, RetrievalFilter
+
+logger = logging.getLogger("turkish_rag")
+if not logger.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter("%(message)s"))
+    logger.addHandler(_handler)
+    logger.setLevel(logging.INFO)
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB_DIR = ROOT / "web"
@@ -27,6 +38,15 @@ _state = {
     "dense_backend": "uninitialized",
     "reranker_active": False,
     "chunk_count": 0,
+}
+
+_metrics = {
+    "requests_total": 0,
+    "chat_requests_total": 0,
+    "abstentions_total": 0,
+    "citation_guard_failures_total": 0,
+    "retrieval_ms_sum": 0.0,
+    "rerank_ms_sum": 0.0,
 }
 
 
@@ -44,11 +64,46 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(
     title="Turkish Customer Support RAG v2 Assistant",
-    version="2.0.0",
+    version="2.5.0",
     docs_url="/api/docs",
     redoc_url=None,
     lifespan=lifespan,
 )
+
+
+@app.middleware("http")
+async def observability_middleware(request: Request, call_next):
+    req_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
+    t0 = time.perf_counter()
+    response = await call_next(request)
+    elapsed_ms = round((time.perf_counter() - t0) * 1000, 2)
+    _metrics["requests_total"] += 1
+    response.headers["X-Request-ID"] = req_id
+    response.headers["X-Process-Time-Ms"] = str(elapsed_ms)
+    logger.info(
+        json.dumps({
+            "event": "http_request",
+            "request_id": req_id,
+            "method": request.method,
+            "path": request.url.path,
+            "status_code": response.status_code,
+            "process_time_ms": elapsed_ms,
+        })
+    )
+    return response
+
+
+@app.get("/api/metrics")
+def metrics():
+    chat_n = max(1, _metrics["chat_requests_total"])
+    return {
+        "requests_total": _metrics["requests_total"],
+        "chat_requests_total": _metrics["chat_requests_total"],
+        "abstentions_total": _metrics["abstentions_total"],
+        "citation_guard_failures_total": _metrics["citation_guard_failures_total"],
+        "avg_retrieval_ms": round(_metrics["retrieval_ms_sum"] / chat_n, 2),
+        "avg_rerank_ms": round(_metrics["rerank_ms_sum"] / chat_n, 2),
+    }
 
 
 class ChatRequest(BaseModel):
@@ -131,6 +186,14 @@ def chat(body: ChatRequest):
         use_llm=body.use_llm,
         requested_model=body.model,
     )
+
+    _metrics["chat_requests_total"] += 1
+    if rag_res["abstained"]:
+        _metrics["abstentions_total"] += 1
+    if not gen_res["citation_grounding_passed"]:
+        _metrics["citation_guard_failures_total"] += 1
+    _metrics["retrieval_ms_sum"] += rag_res["retrieval_latency_ms"]
+    _metrics["rerank_ms_sum"] += rag_res["rerank_latency_ms"]
 
     return {
         "reply": gen_res["reply"],

@@ -127,6 +127,7 @@ def chunk_legal_document(
     raw_text: str,
     spec: LegalSourceSpec,
     max_words: int = 340,
+    contexts: dict[str, str] | None = None,
 ) -> list[DocumentChunk]:
     """Parses a consolidated Turkish legal text into structured, cited chunks."""
     lines = _clean_lines(raw_text)
@@ -196,9 +197,13 @@ def chunk_legal_document(
         citation_tag = f"{spec.doc_id}:{art['article_no']}"
         category = infer_category(f"{art['heading']} {body}", spec.category)  # type: ignore[arg-type]
 
+        ctx_line = contexts.get(citation_tag, "").strip() if contexts else ""
         for sub_idx, sub_body in enumerate(sub_texts):
             header = f"[{spec.title} | {art['section']} | {art['article_no']}{heading_part}]"
-            full_content = f"{header}\n{sub_body}"
+            if ctx_line:
+                full_content = f"{header}\nBağlam: {ctx_line}\n{sub_body}"
+            else:
+                full_content = f"{header}\n{sub_body}"
             chunks.append({
                 "chunk_id": f"{spec.doc_id}__{art_slug}__c{sub_idx}",
                 "doc_id": spec.doc_id,

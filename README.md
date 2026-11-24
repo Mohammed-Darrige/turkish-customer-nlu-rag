@@ -4,7 +4,7 @@
 
 Production-structured Turkish & multilingual (`TR` / `AR` / `EN`) Customer Support RAG Assistant grounded in consolidated Turkish consumer legislation (**6502 Sayılı Kanun**, **Mesafeli Sözleşmeler Yönetmeliği** including 2026 amendments, **Garanti Belgesi Yönetmeliği**, **Satış Sonrası Hizmetler Yönetmeliği**) and operational e-commerce support guides.
 
-Built with **PostgreSQL 16 + `pgvector` (HNSW)**, **PostgreSQL Turkish Full-Text Search (`tsvector` GIN)**, **SQL-native Hybrid RRF (`k=60`)**, **FastAPI**, **Docker Compose**, **Web Speech API (`tr-TR`)**, and **dual post-generation guardrails** (numeric + `[doc_id:Madde N]` citation verification + calibrated out-of-scope abstention).
+Built with **PostgreSQL 16 + `pgvector` (HNSW)**, **PostgreSQL Turkish Full-Text Search (`tsvector` GIN)**, **SQL-native Hybrid RRF (`k=60`)**, **Anthropic-style Contextual Retrieval**, **Snowball Turkish Stemming + MaxP Article Deduplication**, **2-Stage Cross-Encoder Reranking (`mmarco-mMiniLMv2-L12-H384-v1`)**, **Logit-Calibrated Out-of-Scope Abstention**, **FastAPI Microservice Observability (`X-Request-ID`, `GET /api/metrics`)**, **Docker Compose**, and **Web Speech API (`tr-TR`)**.
 
 ---
 
@@ -27,10 +27,10 @@ flowchart LR
 ```
 
 ### Key Engineering Decisions
-- **Deep `RetrieverStore` Seam (`src/stores/`):** Single protocol backed by `PgVectorStore` (PostgreSQL 16 `pgvector` HNSW `m=16, ef_construction=64` + Turkish `tsvector` GIN + SQL `FULL OUTER JOIN` CTE RRF) and `InMemoryStore` (Okapi BM25 + normalized cosine dot product) for zero-DB local development and unit tests.
-- **Structure-Aware Legal Chunking (`src/ingestion/chunker.py`):** Splits consolidated statutory texts on `KISIM` / `BÖLÜM` / `MADDE` / `fıkra` boundaries with 1-fıkra overlap and contextual headers so legal exceptions stay attached to their governing rules.
-- **No Keyword-Bonus Overfitting:** Zero hardcoded `kw_bonus` heuristics; evaluation splits `eval_dev.jsonl` (`N=30`, threshold calibration only) from held-out `eval_test.jsonl` (`N=120`, SHA-256 frozen).
-- **Dual Grounding + Abstention:** Rejects out-of-scope traps instead of forcing a match, and verifies both numeric values and `[doc_id:Madde N]` citations against retrieved evidence.
+- **Deep `RetrieverStore` Seam (`src/stores/`):** Single protocol backed by `PgVectorStore` (PostgreSQL 16 `pgvector` HNSW `m=16, ef_construction=64`, configurable `RAG_EMBEDDING_DIM`, Turkish `tsvector` GIN, SQL `FULL OUTER JOIN` CTE RRF) and `InMemoryStore` (Snowball Turkish-stemmed Okapi BM25 + normalized cosine dot product) for zero-DB local development and unit tests.
+- **Contextual Retrieval + MaxP Deduplication (`src/ingestion/chunker.py`, `src/rag_engine.py`):** Prepends deterministic statutory scope context (`data/raw/article_contexts.json`) to legal chunks before indexing and deduplicates top-k evidences by `citation_tag` (MaxP).
+- **2-Stage Cross-Encoder Reranker + Logit-Calibrated Abstention:** Reranks top-20 hybrid candidates with `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1` (enabled via `RAG_ENABLE_RERANKER=1`) and enforces a dev-calibrated logit abstention gate ($\tau = -1.504$ on `eval_dev.jsonl`, reducing OOS False Answer Rate to `4.0%`).
+- **Microservice Observability (`src/server.py`):** HTTP middleware propagates/generates `X-Request-ID`, emits structured JSON request logs with `X-Process-Time-Ms`, and exposes `GET /api/metrics`.
 
 ---
 
@@ -52,15 +52,16 @@ python scripts/ingest.py --fetch  # refresh snapshots from mevzuat.gov.tr
 
 ---
 
-## Held-Out Benchmark (`data/eval_test.jsonl`, `N = 120`)
+## Held-Out Benchmark (`data/eval_test.jsonl`, `N = 120`, Frozen SHA-256)
 
-Measured by `scripts/evaluate.py` on `Windows AMD64` (`Python 3.13.12`, `intfloat/multilingual-e5-small`, `in_memory` store, `N=95` answerable queries + `N=25` out-of-scope traps). Full report: [`docs/benchmark.md`](docs/benchmark.md).
+Measured by `scripts/evaluate.py` on `Windows AMD64` (`Python 3.13.12`, `intfloat/multilingual-e5-small` + `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`, `in_memory` store, `N=95` answerable queries + `N=25` out-of-scope traps). Full report: [`docs/benchmark.md`](docs/benchmark.md).
 
-| Mode | Hit@1 (N=95) | Recall@3 | Recall@5 | MRR@5 | Abs. F1 (N=120) | Num. & Cite. Grounding | P50 (ms) |
-| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `lexical` | 53.7% | 65.3% | 72.6% | 0.606 | 14.3% | 100.0% / 100.0% | 3.15 |
-| `dense` | 53.7% | 67.4% | 75.8% | 0.617 | 61.5% | 100.0% / 100.0% | 12.06 |
-| **`hybrid`** | **58.9%** | **72.6%** | **80.0%** | **0.665** | **64.4%** | **100.0% / 100.0%** | **13.79** |
+| Mode | Hit@1 (N=95) | Recall@3 | Recall@5 | MRR@5 | Abs. F1 (N=120) | False Ans. Rate | Num/Cite Grounding | P50 (ms) |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `lexical` (Snowball + Context) | 64.2% | 75.8% | 83.2% | 0.717 | 14.3% | 92.0% | 100.0% / 100.0% | 64.49 |
+| `dense` (`e5-small` + Context) | 63.2% | 80.0% | 84.2% | 0.714 | 64.2% | 32.0% | 100.0% / 100.0% | 104.11 |
+| `hybrid` (RRF + MaxP) | 67.4% | 83.2% | 89.5% | 0.755 | 70.2% | 20.0% | 100.0% / 100.0% | 72.63 |
+| **`hybrid_rerank` (+ mMARCO)** | **77.9%** | **89.5%** | **91.6%** | **0.840** | **85.7%** | **4.0%** | **100.0% / 100.0%** | **296.37** |
 
 ---
 
