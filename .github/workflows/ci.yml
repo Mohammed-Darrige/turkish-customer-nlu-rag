@@ -47,7 +47,7 @@ jobs:
       - name: Install pgvector test dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install "numpy>=1.26.0,<3.0.0" "psycopg[binary]>=3.2.0,<4.0.0" "pgvector>=0.3.6,<1.0.0" "pytest>=8.0.0,<9.0.0"
+          pip install "numpy>=1.26.0,<3.0.0" "psycopg[binary]>=3.2.0,<4.0.0" "psycopg-pool>=3.2.0,<4.0.0" "pgvector>=0.3.6,<1.0.0" "pytest>=8.0.0,<9.0.0"
       - name: Run live PostgreSQL 16 + pgvector integration tests
         env:
           DATABASE_URL: postgresql://rag:rag_password@127.0.0.1:5432/turkish_rag

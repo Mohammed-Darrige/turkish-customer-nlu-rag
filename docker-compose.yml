@@ -26,6 +26,7 @@ services:
       - RAG_STORE_BACKEND=pgvector
       - DATABASE_URL=postgresql://rag:rag_password@postgres:5432/turkish_rag
       - RAG_ENABLE_DENSE=1
+      - RAG_ENABLE_RERANKER=1
       - RAG_EMBEDDING_MODEL=intfloat/multilingual-e5-small
       - OLLAMA_HOST=http://host.docker.internal:11434
       - OLLAMA_MODEL=gemma3:4b

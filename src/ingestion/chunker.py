@@ -61,6 +61,18 @@ def _clean_lines(raw_text: str) -> list[str]:
     return lines
 
 
+def _tr_title_article(raw: str) -> str:
+    """Lowercases Turkish I/İ properly before capitalizing article headers."""
+    lowered = raw.replace("İ", "i").replace("I", "ı").lower()
+    out: list[str] = []
+    for word in lowered.split():
+        if word.startswith("i"):
+            out.append("İ" + word[1:])
+        else:
+            out.append(word[:1].upper() + word[1:])
+    return " ".join(out)
+
+
 def _normalize_article_slug(article_no: str) -> str:
     slug = article_no.lower()
     for src, dst in (("ç", "c"), ("ğ", "g"), ("ı", "i"), ("ö", "o"), ("ş", "s"), ("ü", "u")):
@@ -152,7 +164,7 @@ def chunk_legal_document(
                 articles.append(active)
             art_no_raw = re.sub(r"\s+", " ", m.group(1)).strip()
             # Normalize "MADDE 48" -> "Madde 48", "EK MADDE 1" -> "Ek Madde 1"
-            art_no = " ".join(w.capitalize() for w in art_no_raw.split())
+            art_no = _tr_title_article(art_no_raw)
             rest = m.group(2).strip()
             # Capture preceding short title line as article heading if applicable
             heading = current_heading

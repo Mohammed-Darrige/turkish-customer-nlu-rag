@@ -59,7 +59,11 @@ async def lifespan(_app: FastAPI):
     _state["reranker_active"] = engine.reranker_model is not None
     _state["chunk_count"] = engine.store.count_chunks()
     _state["ready"] = True
-    yield
+    try:
+        yield
+    finally:
+        if hasattr(engine.store, "close"):
+            engine.store.close()
 
 
 app = FastAPI(

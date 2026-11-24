@@ -1,7 +1,7 @@
 {
   "total_chunks": 213,
   "total_tokens": 37181,
-  "chunks_jsonl_sha256": "e5e5cf8e76298492080a45328d4bd0371fcbca3442a0f2bf7ac11af3d3e11844",
+  "chunks_jsonl_sha256": "bc99714949dca4b5b04506e2ea7ce932a8d2126cf0051282f3f35c899f1ed575",
   "per_doc_chunk_counts": {
     "kanun_6502": 118,
     "mesafeli_sozlesmeler": 30,

@@ -172,6 +172,8 @@ def main() -> None:
         "",
         "## 1. Retrieval, Abstention & Grounding Summary (`eval_test.jsonl`, N = 120)",
         "",
+        "> **Note on Grounding:** `Num. Grounding` and `Cite. Grounding` are measured under `use_llm=False` (`extractive_citation_fallback`). Live Ollama LLM retry/fallback rates depend on the local model runtime.",
+        "",
         "| Mode | Hit@1 (N=95) | Recall@3 | Recall@5 | MRR@5 | Abs. Prec | Abs. Rec | Abs. F1 | False Ans. Rate | Num. Grounding | Cite. Grounding | P50 (ms) | P95 (ms) |",
         "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
@@ -185,18 +187,30 @@ def main() -> None:
             f"{r['p50_ms']:.2f} | {r['p95_ms']:.2f} |"
         )
 
+    best_res = next(
+        (r for r in results if r["mode"] == "hybrid_rerank"),
+        next((r for r in results if r["mode"] == "hybrid"), results[-1]),
+    )
     lines.extend([
         "",
-        "## 2. Stratified Answerable Bucket Breakdown (Hybrid Mode)",
+        f"## 2. Turkish-First Scope vs. Cross-Lingual Ablation (`{best_res['mode']}`)",
         "",
-        "| Bucket | Queries | Hit@1 | Recall@3 | Recall@5 |",
+        "| Slice / Bucket | Queries | Hit@1 | Recall@3 | Recall@5 |",
         "| :--- | ---: | ---: | ---: | ---: |",
     ])
-    hybrid_res = next((r for r in results if r["mode"] == "hybrid"), results[-1])
-    for b_name, bs in hybrid_res["buckets"].items():
+    for b_name, bs in best_res["buckets"].items():
         n = max(1, bs["n"])
         lines.append(
             f"| `{b_name}` | {bs['n']} | {bs['hit1']/n*100:.1f}% | {bs['rec3']/n*100:.1f}% | {bs['rec5']/n*100:.1f}% |"
+        )
+    tr_buckets = [best_res["buckets"].get("colloquial_tr"), best_res["buckets"].get("legal_exception")]
+    tr_n = sum(b["n"] for b in tr_buckets if b)
+    if tr_n > 0:
+        tr_h1 = sum(b["hit1"] for b in tr_buckets if b)
+        tr_r3 = sum(b["rec3"] for b in tr_buckets if b)
+        tr_r5 = sum(b["rec5"] for b in tr_buckets if b)
+        lines.append(
+            f"| **`turkish_primary` (`colloquial_tr` + `legal_exception`)** | **{tr_n}** | **{tr_h1/tr_n*100:.1f}%** | **{tr_r3/tr_n*100:.1f}%** | **{tr_r5/tr_n*100:.1f}%** |"
         )
 
     BENCHMARK_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

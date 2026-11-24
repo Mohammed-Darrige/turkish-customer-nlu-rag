@@ -101,14 +101,23 @@ class PgVectorStore:
     def __init__(self, database_url: str) -> None:
         self.database_url = database_url
         self._ensure_schema()
+        from pgvector.psycopg import register_vector
+        from psycopg_pool import ConnectionPool
+
+        self._pool = ConnectionPool(
+            conninfo=self.database_url,
+            min_size=1,
+            max_size=8,
+            open=True,
+            configure=register_vector,
+        )
 
     def _connect(self):
-        import psycopg
-        from pgvector.psycopg import register_vector
+        return self._pool.connection()
 
-        conn = psycopg.connect(self.database_url)
-        register_vector(conn)
-        return conn
+    def close(self) -> None:
+        if getattr(self, "_pool", None) is not None:
+            self._pool.close()
 
     def _ensure_schema(self) -> None:
         import psycopg
