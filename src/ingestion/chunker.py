@@ -21,7 +21,7 @@ _PAGE_NO_RE = re.compile(r"^\s*\d{4,5}(?:-\d+)?\s*$")
 _KISIM_RE = re.compile(r"^\s*([A-ZÇĞİÖŞÜ]+\s+KISIM)\s*$", re.UNICODE)
 _BOLUM_RE = re.compile(r"^\s*([A-ZÇĞİÖŞÜ]+\s+BÖLÜM)\s*$", re.UNICODE)
 _ARTICLE_RE = re.compile(
-    r"^((?:EK\s+|GEÇİCİ\s+)?MADDE\s+\d+(?:/[A-Z])?)\s*(?:[-–—]\s*)?(.*)$",
+    r"^((?:EK\s+|GEÇİCİ\s+)?MADDE\s+\d+(?:/[A-Z])?)\b",
     re.UNICODE,
 )
 _FIKRA_RE = re.compile(r"(?m)^\s*(\(\d+\)\s+)")
@@ -165,7 +165,9 @@ def chunk_legal_document(
             art_no_raw = re.sub(r"\s+", " ", m.group(1)).strip()
             # Normalize "MADDE 48" -> "Madde 48", "EK MADDE 1" -> "Ek Madde 1"
             art_no = _tr_title_article(art_no_raw)
-            rest = m.group(2).strip()
+            rest = line[m.end() :].lstrip()
+            if rest[:1] in ("-", "–", "—"):
+                rest = rest[1:].lstrip()
             # Capture preceding short title line as article heading if applicable
             heading = current_heading
             section_parts = [p for p in (current_kisim, current_bolum) if p]

@@ -15,7 +15,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install lightweight test dependencies
-        run: pip install --only-binary :all: --require-hashes -r requirements-ci.lock
+        run: |
+          pip install --only-binary :all: --require-hashes -r requirements-ci.lock
       - name: Run unit and API tests (InMemoryStore, BM25 + NLU + Citation Grounding)
         env:
           RAG_ENABLE_DENSE: "0"
@@ -43,7 +44,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install pgvector test dependencies
-        run: pip install --only-binary :all: --require-hashes -r requirements-ci.lock
+        run: |
+          pip install --only-binary :all: --require-hashes -r requirements-ci.lock
       - name: Run live PostgreSQL 16 + pgvector integration tests
         env:
           DATABASE_URL: postgresql://rag:rag_password@127.0.0.1:5432/turkish_rag
