@@ -92,7 +92,7 @@ class InMemoryStore:
         if embeddings is not None and len(embeddings) == len(self._chunks) and len(embeddings) > 0:
             mat = np.asarray(embeddings, dtype=np.float32)
             norms = np.linalg.norm(mat, axis=1, keepdims=True)
-            norms = np.where(norms == 0.0, 1.0, norms)
+            norms = np.where(norms <= 1e-12, 1.0, norms)
             self._embeddings = mat / norms
         else:
             self._embeddings = None

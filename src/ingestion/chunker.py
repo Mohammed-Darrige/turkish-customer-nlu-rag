@@ -21,7 +21,7 @@ _PAGE_NO_RE = re.compile(r"^\s*\d{4,5}(?:-\d+)?\s*$")
 _KISIM_RE = re.compile(r"^\s*([A-ZÇĞİÖŞÜ]+\s+KISIM)\s*$", re.UNICODE)
 _BOLUM_RE = re.compile(r"^\s*([A-ZÇĞİÖŞÜ]+\s+BÖLÜM)\s*$", re.UNICODE)
 _ARTICLE_RE = re.compile(
-    r"^\s*((?:EK\s+|GEÇİCİ\s+)?MADDE\s+\d+(?:/[A-Z])?)\s*[-–—]?\s*(.*)$",
+    r"^((?:EK\s+|GEÇİCİ\s+)?MADDE\s+\d+(?:/[A-Z])?)\s*(?:[-–—]\s*)?(.*)$",
     re.UNICODE,
 )
 _FIKRA_RE = re.compile(r"(?m)^\s*(\(\d+\)\s+)")

@@ -19,11 +19,11 @@
   function toSpeech(text) {
     return String(text)
       .replace(/https?:\/\/\S+/g, "")
-      .replace(/\[[^\]]*\]/g, "")
+      .replace(/\[[^[\]]*\]/g, "")
       .replace(/\bPOL_[A-Z]+_\d+\b/g, "")
       .replace(/%\s?(\d+)/g, "yüzde $1")
-      .replace(/(\d+)\s*-\s*(\d+)/g, "$1 ila $2")
-      .replace(/\s*(TL|₺)\b/g, " lira")
+      .replace(/\b(\d+)[ \t]{0,2}-[ \t]{0,2}(\d+)\b/g, "$1 ila $2")
+      .replace(/ ?(?:TL\b|₺)/g, " lira")
       .replace(/[*_#`>~]/g, "")
       .replace(/\s{2,}/g, " ")
       .trim();
@@ -167,20 +167,20 @@
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    sendMessage(input.value);
+    void sendMessage(input.value);
   });
 
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      sendMessage(input.value);
+      void sendMessage(input.value);
     }
   });
 
   document.getElementById("samples").addEventListener("click", (e) => {
     const btn = e.target.closest(".sample-btn");
     if (!btn) return;
-    sendMessage(btn.dataset.q || "");
+    void sendMessage(btn.dataset.q || "");
   });
 
   const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -227,5 +227,5 @@
     });
   }
 
-  loadHealth();
+  void loadHealth();
 })();
