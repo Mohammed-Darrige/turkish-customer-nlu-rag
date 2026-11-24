@@ -44,7 +44,7 @@
       const r = await fetch("/api/health", { cache: "no-store" });
       if (!r.ok) throw new Error(r.status);
       const h = await r.json();
-      pillRag.textContent = `RAG: ${h.policy_count} politika · ${h.rag_dense_backend}`;
+      pillRag.textContent = `RAG: ${h.chunk_count} chunk · ${h.store_backend} · ${h.rag_dense_backend}`;
       pillRag.className = "pill ok";
       pillNlu.textContent = `NLU: ${h.nlu_backend}`;
       pillNlu.className = "pill ok";
@@ -89,7 +89,9 @@
 
     const badge = document.createElement("span");
     badge.className = "muted";
-    badge.textContent = `${data.policy.id || "—"} · ${data.backends.generation}`;
+    badge.textContent = data.abstained
+      ? `ABSTAINED · ${data.backends.generation}`
+      : `${data.policy.citation_tag || "—"} · ${data.backends.generation}`;
     actions.appendChild(badge);
     div.appendChild(actions);
 
@@ -103,12 +105,14 @@
     grid.className = "inspector-grid";
     const topEv = data.evidences && data.evidences[0];
     const lines = [
-      `Politika: [${data.policy.id}] ${data.policy.title}`,
-      `NLU: category=${data.nlu.category} (${data.nlu.category_confidence}), intent=${data.nlu.intent}, sentiment=${data.nlu.sentiment_score}`,
-      topEv ? `Skorlar: bm25=${topEv.bm25_score} (rank ${topEv.bm25_rank}), dense=${topEv.dense_score} (rank ${topEv.dense_rank}), rrf=${topEv.rrf_score}` : "Kanıt yok",
-      `Doğrulama: retrieval=${data.grounding.retrieval_verified}, numeric=${data.grounding.numeric_grounding_passed}`,
+      data.abstained
+        ? `Durum: KAPSAM DIŞI (Abstained: ${data.abstention_reason || "low_relevance"})`
+        : `Kaynak: [${data.policy.citation_tag}] ${data.policy.title}`,
+      `NLU: lang=${data.nlu.language}, category=${data.nlu.category} (${data.nlu.category_confidence}), intent=${data.nlu.intent}`,
+      topEv ? `Skorlar: lexical=${topEv.lexical_score} (rank ${topEv.lexical_rank}), dense=${topEv.dense_score} (rank ${topEv.dense_rank}), rrf=${topEv.rrf_score}` : "Kanıt yok",
+      `Doğrulama: retrieval=${data.grounding.retrieval_verified}, numeric=${data.grounding.numeric_grounding_passed}, citation=${data.grounding.citation_grounding_passed}`,
       `Süre (ms): nlu=${data.timings_ms.nlu}, retrieval=${data.timings_ms.retrieval}, gen=${data.timings_ms.generation}`,
-      `Backend: dense=${data.backends.dense}, nlu=${data.backends.nlu}`,
+      `Backend: store=${data.backends.store}, dense=${data.backends.dense}, nlu=${data.backends.nlu}`,
     ];
     for (const line of lines) {
       const row = document.createElement("div");

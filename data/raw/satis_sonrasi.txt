@@ -1,0 +1,1924 @@
+SATIŞ SONRASI HİZMETLER YÖNETMELİĞİ
+BİRİNCİ BÖLÜM
+Amaç, Kapsam, Dayanak ve Tanımlar
+Amaç
+MADDE 1 –
+(1) Bu Yönetmeliğin amacı; ekli listede yer alan malların kullanım ömürleri,
+azami tamir süreleri ile satış sonrası montaj, bakım ve onarım hizmetlerine
+ilişkin usul ve esasları düzenlemektir.
+Kapsam
+MADDE 2 –
+(1) Bu Yönetmelik, üretici veya ithalatçıların satış sonrası montaj, bakım ve
+onarım hizmetlerini vermek zorunda oldukları, ekli listede yer alan mallar ile
+herhangi bir üretici veya ithalatçıya bağlı olmaksızın faaliyette bulunan
+servis istasyonları tarafından yürütülen hizmetleri kapsar.
+Dayanak
+MADDE 3 –
+(1) Bu Yönetmelik, 7/11/2013 tarihli ve 6502 sayılı Tüketicinin Korunması
+Hakkında Kanunun 58 inci ve 84 üncü maddelerine dayanılarak hazırlanmıştır.
+Tanımlar
+MADDE 4 –
+(1) Bu Yönetmelikte geçen;
+a) Azami tamir
+süresi: Bu Yönetmeliğe ekli listede yer alan her mal grubu için tespit edilen
+süreleri,
+b) Bakanlık:
+(Değişik
+ibare:RG-12/2/2020-31037)
+(1)
+Ticaret Bakanlığını
+,
+c) Genel
+Müdürlük: Tüketicinin Korunması ve Piyasa Gözetimi Genel Müdürlüğünü,
+ç) İl
+Müdürlüğü: Bakanlık ticaret il müdürlüklerini,
+d)
+(Değişik:RG-5/11/2020-31295)
+(2)
+İş günü: Ulusal, resmî ve dini bayram günleri ile yılbaşı, 1 Mayıs, 15 Temmuz
+ve pazar günleri dışındaki çalışma günlerini,
+e) İthalatçı:
+Kamu tüzel kişileri de dâhil olmak üzere, bu Yönetmeliğe ekli listedeki malları
+ticari veya mesleki amaçlarla ithal ederek satım, kira, finansal kiralama veya
+benzeri bir yolla piyasaya süren gerçek veya tüzel kişiyi,
+f) Kanun:
+Tüketicinin Korunması Hakkında Kanunu,
+g) Kullanım
+ömrü: Malın, tüketiciye teslim tarihinden başlayan ve bu Yönetmeliğe ekli
+listede yer alan her mal grubu için tespit edilen süreleri,
+ğ) Mal:
+Alışverişe konu olan taşınır eşyalardan, Bakanlıkça tespit ve ilan edilen,
+satış sonrası hizmet istenecek ürünler listesinde yer alan malı,
+h) Özel servis:
+Herhangi bir üretici veya ithalatçıya bağlı olmaksızın faaliyette bulunan
+servis istasyonlarını,
+ı) Satıcı: Kamu
+tüzel kişileri de dâhil olmak üzere ticari veya mesleki amaçlarla tüketiciye
+mal sunan ya da mal sunanın adına ya da hesabına hareket eden gerçek veya tüzel
+kişiyi,
+i) Satış
+sonrası hizmet yeterlilik belgesi: Yurt içinde üretilen veya ithal edilen
+mallar ile ilgili olarak, Bakanlıkça tespit ve ilan edilen kullanım ömrü
+süresince üretici veya ithalatçılar tarafından verilmesi zorunlu montaj, bakım
+ve onarım hizmetleri için, yeterli teknik kadro, takım, teçhizat bulunduğunu
+gösteren ve firmanın unvanı ile merkez adresine göre düzenlenen belgeyi,
+j) Servis istasyonu:
+Yetkili servis istasyonları ile özel servisleri,
+k) Tüketici:
+Ticari veya mesleki olmayan amaçlarla hareket eden gerçek veya tüzel kişiyi,
+l) Üretici:
+Kamu tüzel kişileri de dâhil olmak üzere, bu Yönetmeliğe ekli listedeki malları
+üretenler ile mal üzerine markasını, unvanını veya herhangi bir ayırt edici
+işaretini koyarak kendisini üretici olarak gösteren gerçek veya tüzel kişiyi,
+m) Yetkili
+servis istasyonu: Üretici veya ithalatçıların ürettikleri veya ithal ettikleri
+mallar için; kullanım ömürleri süresince satış sonrası montaj, bakım ve onarım
+hizmetlerini yürütmek üzere, kendileri tarafından veya aralarındaki sözleşme
+uyarınca, bu amaçla yetki verilen gerçek veya tüzel kişiler tarafından kurulan
+ya da kurulmuş bulunan tesisleri,
+n)
+(Ek:RG-5/11/2020-31295)
+(2)
+Kalıcı veri saklayıcısı: Tüketicinin kendisine gönderilen bilgiyi, bu bilginin
+amacına uygun olarak makul bir süre incelemesine elverecek şekilde
+kaydedilmesini ve değiştirilmeden kopyalanmasını sağlayan ve bu bilgiye aynen
+ulaşılmasına imkân veren kısa mesaj, elektronik posta, internet, disk, CD, DVD,
+hafıza kartı ve benzeri her türlü araç veya ortamı,
+ifade eder.
+İKİNCİ BÖLÜM
+Servis İstasyonları ve Servis Hizmetleri ile İlgili
+Esaslar
+Yetkili
+servis istasyonlarının kuruluşu
+MADDE 5 –
+(1) Üretici veya ithalatçılar, ekli listede yer alan her mal grubu için
+belirtilen kullanım ömrü süresince, satış sonrası hizmetleri sağlamak üzere
+yine ekli listede tespit edilen yer, sayı ve özellikte yetkili servis
+istasyonunu, yeterli teknik kadroya sahip şekilde kurmak zorundadır.
+(2) Üretici
+veya ithalatçılar, yetkili servis istasyonlarını kendileri kurabileceği gibi
+verilen hizmetlerden sorumlu olmak şartıyla kurulu bulunan servis
+istasyonlarından veya servis organizasyonlarından da faydalanabilir.
+Başvuru ve
+izin
+MADDE 6 –
+(1) Üretici veya ithalatçıların, ekli listede yer alan mallar için Bakanlıkça
+onaylı satış sonrası hizmet yeterlilik belgesi alması zorunludur. Bu
+Yönetmeliğin ekli listesinde yer alan ancak servis istasyonu gerekmeyen mallar
+için satış sonrası hizmet yeterlilik belgesi düzenlenmez.
+(2) Satış
+sonrası hizmet yeterlilik belgesine yönelik başvurular, Bakanlığın internet
+sayfasında, elektronik imza ile yapılır ve elektronik imza ile onaylanır.
+(3) Başvuru ile
+ilgili hususlar Bakanlığın internet sayfasında ilan edilir.
+(4) Başvuru
+üzerine Genel Müdürlükçe, Kanun ve bu Yönetmeliğe uygunluk açısından gerekli
+incelemeler yapılarak yeterli görülenlere satış sonrası hizmet yeterlilik
+belgesi verilir.
+(5) Genel
+Müdürlük, başvuruları değerlendirirken gerek duyması halinde tüketicilerin
+sağlık ve güvenliği ile ekonomik çıkarlarını korumak amacıyla; belgelendirme
+yapılacak ürünle ilgili olarak, gerekli incelemeleri yapmaya veya yaptırmaya
+yetkili olup, daha önce onaylanmış kuruluşlardan alınacak raporları ve ürünle
+ilgili olarak diğer kamu kurum ve kuruluşları tarafından verilen belgeleri de
+dikkate alabilir.
+Satış
+sonrası hizmet yeterlilik belgesi geçerlilik süresi ve diğer işlemler
+MADDE 7 –
+(1)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Satış sonrası hizmet yeterlilik
+belgesi geçerlilik süresi iki yıldır. Belgenin geçerlilik süresi dolmadan
+yenilenmesi zorunludur.
+(2) Satış
+sonrası hizmetleri yeterlilik belgelerine yönelik; unvan, adres, servis
+istasyonu, kapsam değişikliği ve benzeri müracaatlar sırasında istenecek bilgi
+ve belgeler Genel Müdürlükçe ayrıca belirlenerek Bakanlığın internet sayfasında
+ilan edilir.
+(3)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Satış sonrası hizmet yeterlilik belgesi başvurusunda bildirilen
+servislerde değişiklik olması durumunda bu değişikliğin otuz gün içerisinde
+Bakanlığa bildirilmesi zorunludur.
+Satış
+sonrası hizmet yeterlilik belgesinin iptali
+MADDE 8 –
+(1) Bu Yönetmeliğe aykırı uygulamaların tespiti ve bununla ilgili olarak Genel
+Müdürlüğün yazılı uyarısına rağmen verilen süre içerisinde durumun
+düzeltilmemesi halinde, üretici veya ithalatçının satış sonrası hizmet
+yeterlilik belgesi iptal edilir.
+Yetkili
+servis istasyonlarının özellikleri ve sayısı
+MADDE 9 –
+(1)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Ekli listede belirlenen
+sayıda kurulan ve Bakanlığa bildirilen yetkili servis istasyonlarının; hizmet
+konularına göre Bakanlık veya Türk Standardları Enstitüsü tarafından belirlenen
+düzenleme veya standartlarda yer alan özellikleri taşıması gerekir.
+(2)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Üretilen veya ithal edilen malın; özelliği, kullanım amacı ve yeri
+ile satış miktarı dikkate alınarak bu Yönetmelik ekinde yer alan listede tespit
+ve ilan edilen yetkili servis istasyonlarının sayıları ve bunlarda aranacak
+özellikler, gerektiğinde ilgili kurum ve kuruluşların da görüşü alınarak, Genel
+Müdürlük tarafından belirlenir veya değiştirilir.
+(3) Yetkili
+servis istasyonlarının kuruluşu ile ilgili müracaatlar sırasında istenecek
+bilgi ve belgeler Genel Müdürlükçe ayrıca belirlenir ve Bakanlığın internet
+sayfasında ilan edilir.
+(4) Yetkili
+servis istasyonlarının kontrolü Genel Müdürlüğün veya ilgili İl Müdürlüğünün
+görevlendireceği personel ya da Bakanlık tarafından yetki verilen kurum veya
+kuruluşlar tarafından yapılır. Yeterli bulunan yetkili servis istasyonları için,
+bu Yönetmelik hükümlerine uygunluğunu gösteren belge düzenlenir.
+(5)
+(Ek:RG-12/2/2020-31037)
+(1)
+Ekli listede belirlenen sayıdan daha fazla kurulan ve Bakanlığa
+bildirilmesi zorunlu olmayan yetkili servis istasyonlarında yapılan iş ve
+işlemlerin de Yönetmelik hükümlerine uygun olması zorunludur.
+Servis
+istasyonlarının sorumlulukları
+MADDE 10 –
+(1) Tüketicinin bulunduğu yerde yetkili servis istasyonunun olmaması halinde
+satış sonrası hizmetlerin verilmesinden, tüketiciye en yakın yerdeki yetkili
+servis istasyonu sorumludur.
+(2)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Tanıtma ve kullanma kılavuzunda yer alan hususlara aykırı kullanımlar
+hariç olmak üzere, yetkili servis istasyonları, garanti süresi içerisinde
+tüketicilerden nakliye, posta, kargo veya servis elemanlarının ulaşım gideri
+gibi herhangi bir ücret talep edemez.
+(3) Servis
+istasyonlarının, bu Yönetmeliğin 11 inci maddesinde belirtilen hususları içeren
+belgeleri düzenlemesi ve bunların birer nüshasını tüketicilere vermesi
+zorunludur.
+(4)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Kullanım ömrü süresince, malın yetkili servis istasyonlarındaki bakım
+ve onarım süresi azami tamir süresini geçemez. Bu süre, garanti süresi
+içerisinde mala ilişkin arızanın yetkili servis istasyonuna veya satıcıya
+bildirimi tarihinde, garanti süresi dışında ise malın yetkili servis
+istasyonuna teslim tarihinden itibaren başlar. Tüketici arıza bildirimini;
+telefon, faks, e-posta, iadeli taahhütlü mektup ve benzeri bir yolla yapabilir.
+Uyuşmazlık halinde bildirime ilişkin ispat yükümlülüğü tüketiciye aittir. Satış
+sonrası hizmetlere ilişkin olarak tüketicilerin iletişime geçebilmesi için
+üretici veya ithalatçı tarafından bir telefon hattı tahsis edilmesi durumunda,
+bu hat ile ilgili olarak üretici veya ithalatçı olağan ücret tarifesinden daha
+yüksek bir tarife seçemez.
+(5) Malın
+tamirinin tamamlandığı tarih tüketiciye telefon, kısa mesaj, faks, e-posta,
+iadeli taahhütlü mektup ve benzeri bir yolla bildirilir. Uyuşmazlık halinde
+bildirime ilişkin ispat yükümlülüğü yetkili servis istasyonuna aittir.
+(6) Malın
+garanti süresi dışında, servis istasyonları tarafından verilen montaj, bakım ve
+onarım hizmetiyle ilgili olarak, bir yıl içerisinde aynı arızanın tekrarı
+halinde tüketiciden herhangi bir isim altında ücret istenemez. Tüketicinin malı
+kullanım kılavuzunda yer alan hususlara aykırı kullanmasından kaynaklanan
+arızalar bu fıkra kapsamı dışındadır.
+(7) Malın
+garanti süresi dışında, garanti belgesi ile satılması zorunlu olmayan bir
+parçasının servis istasyonu tarafından değiştirilmesi veya satılması durumunda,
+değişen veya satılan parça için altı aydan aşağı olmamak üzere bir garanti
+süresi verilir.
+Servis
+istasyonlarınca düzenlenecek belgeler
+MADDE 11 –
+(1) Servis istasyonlarının, kendilerine kargo ile gönderilen arızalı mallar
+hariç olmak üzere, kendilerine teslim edilen veya kendileri tarafından teslim
+alınan arızalı mallar ile ilgili olarak malın teslim alındığına dair aşağıdaki
+bilgileri içeren bir belge düzenlemesi zorunludur:
+a) Malı teslim
+edenin adı, soyadı ve imzası,
+b) Malı teslim
+alanın adı, soyadı ve imzası,
+c) Tüketicinin
+mala ilişkin şikayet ve talepleri,
+ç) Malın cinsi,
+markası ve modeli,
+d) Garanti
+kapsamı içindeki malların arızasının on iş günü içerisinde giderilmemesi
+halinde üretici veya ithalatçının; malın tamiri tamamlanıncaya kadar,
+tüketiciye benzer özelliklere sahip başka bir malın verileceğine dair bilgi,
+e) Malın teslim
+veya arızanın bildirim tarihi.
+(2) Servis
+istasyonlarının, tüketicilere teslim edilen mallarla ilgili olarak aşağıdaki
+bilgileri içeren servis fişini tekemmül ettirmesi ve tüketicilere vermesi
+zorunludur:
+a) Servis
+istasyonunun unvan, adres, telefon, faks ve diğer erişim bilgileri,
+b) Malın
+tüketiciye teslim tarihi,
+c) Malın
+arızasına ve yapılan işlemlere ilişkin bilgi,
+ç) Garanti
+kapsamı dışında ise ücreti,
+d) Servis
+istasyonu yetkilisinin imzası,
+e) Bu
+Yönetmeliğin 10 uncu maddesinde yer alan, servis istasyonlarının
+sorumluluklarını gösterir hususlar,
+f) Kargo ile
+teslim alınan ürünler haricinde, tüketicinin adı, soyadı, adresi ve telefonu
+ile imzası.
+(3) Bu maddenin
+birinci fıkrasının (d) bendindeki bilgilerin özel servisler tarafından
+düzenlenen belgelerde yer alması zorunlu değildir.
+(4) 13/6/2014
+tarihli ve 29029 sayılı Resmî Gazete’de yayımlanan Garanti Belgesi
+Yönetmeliğinin 9 uncu maddesinin birinci fıkrasının (c) bendi ve 11 inci
+maddesinin ikinci fıkrası uyarınca düzenlenmesi öngörülen raporlarda yer alacak
+hususların servis fişinde belirtilmesi halinde ayrıca rapor düzenlenmeyebilir.
+(5)
+(Ek:RG-12/2/2020-31037)
+(1)
+Onarımın malın kullanıldığı yerde yapılması durumunda, bu maddenin
+birinci fıkrasında belirtilen belgenin düzenlenmesi zorunlu değildir.
+(6)
+(Ek:RG-5/11/2020-31295)
+(2)
+Malın teslim alındığına dair belge ve servis fişi kalıcı veri saklayıcısıyla da
+tüketiciye verilebilir. Tüketicinin talep etmesi halinde kâğıt üzerinde yazılı
+olarak verilmesi zorunludur. Bu belgelerin tüketiciye verildiğine ilişkin
+onayının alınması gerekir. Onay, yazılı olarak veya kalıcı veri saklayıcısı
+aracılığıyla alınabilir. Tüketicinin onayının alındığının ispat yükü servis
+istasyonuna aittir. Malın teslim alındığına dair belgenin ve servis fişinin
+kalıcı veri saklayıcısıyla verilmesi durumunda birinci ve ikinci fıkralarda yer
+alan imza şartı aranmaz.
+Yedek parça
+ve fiyat listesi
+MADDE 12 –
+(1) Üretici veya ithalatçılar, tüketicilerin talebi üzerine yedek parça
+satışından kaçınamazlar.
+(2) Servis
+istasyonlarının, yedek parça fiyat listesini, tüketicilerin görebileceği bir
+yere asması veya katalog halinde ya da elektronik ortamda tüketiciye göstermesi
+zorunludur.
+Değiştirilen
+parçanın iadesi
+MADDE 13 –
+(1) Yetkili servis istasyonlarının, bakım ve onarımını yaptıkları mallara ait
+değiştirilen yedek parçaları; garanti süresi içerisinde tüketiciye göstermesi,
+garanti süresi dışında ise 9/8/1983 tarihli ve 2872 sayılı Çevre Kanunu
+hükümleri saklı kalmak üzere iade etmesi zorunludur.
+Üretici,
+ithalatçı ve satıcının sorumluluğu
+MADDE 14 –
+(1) Üretici veya ithalatçılar, yetkili servis istasyonlarının ayrı bir tüzel
+kişiliği olsa dahi, satış sonrası hizmetlerin sağlanmasından ve yürütülmesinden
+yetkili servis istasyonları ile birlikte müteselsilen sorumludur.
+(2) Satış
+sonrası hizmetler, malın niteliğine göre kullanıldığı yerlerde de sağlanabilir.
+(3)
+(Değişik:RG-12/2/2020-31037)
+(1)
+Tanıtma ve kullanma kılavuzunda yer alan hususlara aykırı kullanımlar
+hariç olmak üzere üretici, ithalatçı veya satıcılar garanti süresi içerisinde
+tüketicilerden nakliye, posta, kargo veya servis elemanlarının ulaşım gideri
+gibi herhangi bir ücret talep edemez.
+(4) Malın
+garanti süresi içerisinde yetkili servis istasyonuna veya satıcıya tesliminden
+itibaren arızasının on iş günü içerisinde giderilememesi halinde, üretici veya
+ithalatçının; malın tamiri tamamlanıncaya kadar, benzer özelliklere sahip başka
+bir malı tüketicinin kullanımına tahsis etmesi zorunludur. Benzer özelliklere
+sahip başka bir malın tüketici tarafından istenmemesi halinde üretici veya
+ithalatçılar bu yükümlülükten kurtulur. Buna ilişkin ispat yükümlülüğü üretici
+veya ithalatçıya aittir.
+(5) İthalatçının
+herhangi bir şekilde ticari faaliyetinin sona ermesi hâlinde mala ilişkin bakım
+ve onarım hizmetlerinin sunulmasından garanti süresi boyunca satıcı, üretici ve
+yeni ithalatçı müteselsilen sorumludur. Garanti süresi bittikten sonra ise
+kullanım ömrü süresince bakım ve onarım hizmetlerini üretici veya yeni
+ithalatçının sunması zorunludur.
+(6) Üretici
+veya ithalatçılar; satış sonrası hizmetlerin ilgili mevzuat hükümlerine göre
+yürütülmesini sağlamak, yetkili servis istasyonlarının çalışmalarını izlemek,
+kontrol etmek ve görülen eksiklikleri gidermekle yükümlüdür.
+(7) Garanti
+süresi içerisinde arızalı malın satıcıya teslim edilmesi halinde satıcının,
+teslim edilen arızalı mallar ile ilgili olarak malın teslim alındığına dair bir
+belge düzenlemesi zorunludur.  Bu belgede Yönetmeliğin 11 inci maddesinin
+birinci fıkrasındaki hususlar yer alır.
+(8)
+(Ek:RG-12/2/2020-31037)
+(1)
+Üretici veya ithalatçıların internet sitesinin bulunması durumunda,
+tüm yetkili servis istasyonlarına ilişkin güncel iletişim bilgilerinin bu
+sitelerde yer alması zorunludur.
+(9)
+(Ek:RG-12/2/2020-31037)
+(1)
+Üretici veya ithalatçıların, ekli listede belirlenenden daha fazla
+kurulan servisler dâhil olmak üzere tüm yetkili servis istasyonu bilgilerini
+Bakanlık tarafından oluşturulan Servis Bilgi Sistemine ilişkin internet
+sitesine otuz gün içerisinde doğru ve eksiksiz bir şekilde girmesi ve servis
+bilgilerinde değişiklik olması durumunda bu bilgileri güncellemesi zorunludur.
+ÜÇÜNCÜ BÖLÜM
+Çeşitli ve Son Hükümler
+Muafiyet
+MADDE 15 –
+(1) Ticari amaç dışında yalnızca kendi kullanımından doğan ihtiyaçları için
+üretim veya ithalat yapan kişi veya kuruluşlar ile tüketicilerin özel
+siparişleri doğrultusunda üretilen veya ithal edilen mallara ilişkin olarak bu
+Yönetmelik hükümleri uygulanmaz.
+Bilgi veya
+belgelerin saklanması
+MADDE 16 –
+(1) Bu Yönetmelikte düzenlenmesi öngörülen her bir işleme ilişkin bilgi veya
+belgelerin üç yıl boyunca saklanması zorunludur.
+Yürürlükten
+kaldırılan yönetmelik
+MADDE 17 –
+(1) 14/6/2003 tarihli ve 25138 sayılı Resmî Gazete’de yayımlanan Sanayi
+Mallarının Satış Sonrası Hizmetleri Hakkında Yönetmelik yürürlükten
+kaldırılmıştır.
+Geçiş
+hükümleri
+GEÇİCİ MADDE 1
+– (Başlığı ile Birlikte Değişik:RG-12/2/2020-31037)
+(1)
+(1) Bu maddenin
+yürürlük tarihinden önce onaylanan satış sonrası hizmet yeterlilik belgeleri
+onay tarihinden itibaren iki yıl geçerlidir.
+(2) Ekli
+listeye bu fıkrayı ihdas eden Yönetmelik ile eklenen yeni ürünlerden standardı
+olmayan ürünler için Türk Standardları Enstitüsü tarafından hazırlanacak ilgili
+standardın yürürlüğe girmesinden itibaren üç ay içerisinde satış sonrası hizmet
+yeterlilik belgesi alınması zorunludur.
+Yürürlük
+MADDE 18 –
+(1) Bu Yönetmelik yayımı tarihinde yürürlüğe girer.
+Yürütme
+MADDE 19 –
+(1) Bu Yönetmelik hükümlerini
+(Değişik ibare:RG-12/2/2020-31037)
+(1)
+Ticaret
+Bakanı
+yürütür.
+_______________
+(1)
+Bu değişiklik 1/7/2020 tarihinde yürürlüğe girer.
+(2)
+Bu değişiklik 1/1/2021 tarihinde yürürlüğe girer.
+Yönetmeliğin Yayımlandığı Resmî Gazete’nin
+Tarihi
+Sayısı
+13/6/2014
+29029
+Yönetmelikte Değişiklik Yapan Yönetmeliklerin
+  Yayımlandığı Resmî Gazetelerin
+Tarihi
+Sayısı
+1.
+12/2/2020
+31037
+2.
+5/11/2020
+31295
+EK
+6502 SAYILI TÜKETİCİNİN KORUNMASI HAKKINDA KANUN GEREĞİNCE
+SATIŞ SONRASI HİZMET VERİLMESİ ZORUNLU OLAN
+TÜKETİCİ ÜRÜNLERİ LİSTESİ
+(Değişik:RG-12/2/2020-31037)
+(1)
+SEKTÖR/ÜRÜN
+KULLANIM ÖMRÜ
+SERVİS SAYISI VE COĞRAFİ
+  BÖLGE ŞARTI
+AZAMİ TAMİR SÜRESİ
+1
+SAĞLIK ÜRÜNLERİ
+1.1
+KİŞİSEL KULLANIM CİHAZLARI
+1.1.1
+TANSİYON
+  ALETLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.1.2
+KAN DEĞERİ ÖLÇEN CİHAZLAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.1.3
+İŞİTME CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.1.4
+KONUŞMA CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.1.5
+ATEŞ ÖLÇEN CİHAZLAR
+3 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.1.6
+MASAJ ALETLERİ VE CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2
+ANNE VE ÇOCUK ÜRÜNLERİ
+1.2.1
+ELEKTRONİK GÖĞÜS POMPALARI
+3 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.2
+BİBERON ISITICILARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.3
+BİBERON STERİLİZATÖRLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.4
+MAMA HAZIRLAMA SETLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.5
+ÇOCUK OTO KOLTUKLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.6
+MAMA SANDALYELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.7
+ÇOCUK ARABALARI VE PUSETLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.2.8
+BEBEK İZLEME KAMERALARI VE EBEVEYN MONİTÖRLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.3
+ENGELLİLERE AİT
+  CİHAZLAR
+1.3.1
+TEKERLEKLİ SANDALYELER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.3.2
+ENGELLİLER İÇİN AKÜLÜ ARAÇLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+1.3.3
+GÖRME ENGELLİLER İÇİN KİTAP OKUYUCULAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+2
+GÖZLÜKLER
+2.1
+GÜNEŞ GÖZLÜKLERİ
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+2.2
+GÖZLÜK ÇERÇEVELERİ
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+3
+ISITMA VE HAVALANDIRMA
+  CİHAZLARI
+3.1
+KLİMALAR
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+20 İŞ GÜNÜ
+3.2
+ISI POMPALARI
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7 SERVİS
+20 İŞ GÜNÜ
+3.3
+FAN KOİLLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+3.4
+BRÜLÖRLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+3.5
+KALORİFER KAZANLARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+3.6
+KAT KALORİFERLERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+20 İŞ GÜNÜ
+3.7
+KOMBİLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+20 İŞ GÜNÜ
+3.8
+DOĞALGAZ / LPG SOBALARI
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+3.9
+GAZYAĞLI SOBALAR
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+3.10
+KATI YAKIT SOBALARI
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+3.11
+ELEKTRİKLİ ODA ISITICILARI
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.12
+ŞOFBENLER
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.13
+ANİ SU ISITICILARI
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.14
+TERMOSİFONLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.15
+PENCERE TİPİ FANLAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+3.16
+VANTİLATÖRLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.17
+USB FANLAR
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+3.18
+DAVLUMBAZLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.19
+ASPİRATÖRLER
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET
+  OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+3.20
+FANLI ELBİSE KURUTUCULARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+3.21
+HAVA TEMİZLEYİCİLER VE
+  NEMLENDİRİCİLER
+10 YIL
+AYRI COĞRAFİ BÖLGELERDE TOPLAM
+  3 SERVİS
+20 İŞ GÜNÜ
+4
+SIHHİ TESİSAT ÜRÜNLERİ
+4.1
+HİDROFORLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+4.2
+SU ARITMA CİHAZLARI
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7 SERVİS
+20 İŞ GÜNÜ
+4.3
+MOTORLU SU POMPALARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+4.4
+VANALAR
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.5
+BATARYALAR (SIHHİ TESİSAT)
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.6
+MUSLUKLAR
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.7
+REZERVUARLAR
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.8
+KÜVET VE DUŞ TEKNELERİ
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.9
+HİDROMASAJ SİSTEMLERİ VE JAKUZİLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+4.10
+DUŞAKABİNLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+4.11
+ELEKTRİKLİ SAUNALAR
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.12
+LAVABOLAR
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.13
+KLOZETLER
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+4.14
+EVİYELER
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+5
+TAŞINABİLİR
+ELEKTRİKLİ
+EL ALETLERİ
+5.1
+TESTERE MAKİNELERİ
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+5.2
+POLİSAJ MAKİNELERİ
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+5.3
+MATKAPLAR
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+5.4
+LEHİM TABANCALARI
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+5.5
+VİDALAMA MAKİNELERİ
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7 SERVİS
+20 İŞ GÜNÜ
+5.6
+ZIMPARA MAKİNELERİ
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+5.7
+AVUÇ TAŞLAMA MAKİNELERİ
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7 SERVİS
+20 İŞ GÜNÜ
+6
+MOTORLAR
+6.1
+ELEKTRİK MOTORLARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+6.2
+İÇTEN YANMALI MOTORLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+6.3
+DIŞTAN TAKMALI DENİZ MOTORLARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+7
+EVLERDE KULLANILAN
+  ALTERNATİF ENERJİ
+SİSTEMLERİ
+7.1
+GÜNEŞ ENERJİSİ İLE ISITMA
+  SİSTEMLERİ
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+7.2
+GÜNEŞ ENERJİSİNİ ELEKTRİK
+  ENERJİSİNE ÇEVİREN SİSTEMLER
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+7.3
+RÜZGÂR ENERJİSİNİ ELEKTRİK
+  ENERJİSİNE ÇEVİREN SİSTEMLER
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8
+ELEKTRONİK İLE
+  TELEKOMÜNİKASYON ALET VE CİHAZLARI
+8.1
+TELEKOMÜNİKASYON ALET VE
+  CİHAZLARI
+8.1.1
+SABİT HATLI TELEFONLAR
+7 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+20 İŞ GÜNÜ
+8.1.2
+CEP TELEFONLARI
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+20 İŞ GÜNÜ
+8.1.3
+UYDU TELEFONLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.1.4
+MODEMLER/ROUTERLAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.1.5
+FAKSLAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.1.6
+ARAÇ İÇİ KONUŞMA KİTLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2
+BİLGİSAYAR VE ÇEVRE
+  BİRİMLERİ
+8.2.1
+BİLGİSAYARLAR
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20 SERVİS
+20 İŞ GÜNÜ
+8.2.2
+TABLETLER
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20 SERVİS
+20 İŞ GÜNÜ
+8.2.3
+MOUSELAR
+3 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.4
+MONİTÖRLER
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20 SERVİS
+20 İŞ GÜNÜ
+8.2.5
+YAZICILAR
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20 SERVİS
+20 İŞ GÜNÜ
+8.2.6
+TARAYICILAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.7
+SES KAYIT CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.8
+KLAVYELER
+3 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.9
+HARİCİ DİSK ÜNİTELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.10
+BİLGİSAYAR KAMERALARI
+3 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.11
+OYUN KONSOLLARI
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+8.2.12
+İŞLEMCİLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.13
+KART OKUYUCULAR
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.14
+AĞ GÜVENLİK CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.15
+HARD DİSKLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.16
+ANAKARTLAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.17
+KİTAP OKUYUCULAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.18
+DİJİTAL FOTOGRAF ÇERÇEVELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.19
+SANAL GERÇEKLİK GÖZLÜKLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.2.20
+BELLEKLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.21
+EKRAN KARTLARI
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.22
+LAPTOP SOĞUTUCULARI
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.2.23
+AKILLI KALEMLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.3
+GÜVENLİK VE ALARM SİSTEMLERİ
+8.3.1
+GÜVENLİK AMAÇLI KAMERALAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.2
+GÜVENLİK AMAÇLI MONİTÖRLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.3
+GÜVENLİK AMAÇLI KAYIT CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.4
+ARAÇ İÇİ KAMERALAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.5
+ALARM CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.6
+EV İÇİ DİNLEME VE İZLEME CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.7
+AKILLI EV VE OTOMASYON SİSTEMLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.3.8
+SESLİ VE GÖRÜNTÜLÜ KONUŞMA SİSTEMLERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4
+EV VE BENZERİ YERLERDE KULLANILAN
+  ELEKTRONİK CİHAZLAR
+8.4.1
+TELEVİZYONLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+40 SERVİS
+20 İŞ GÜNÜ
+8.4.2
+PİKAP-PLAK ÇALARLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4.3
+MÜZİK SETLERİ
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+40 SERVİS
+20 İŞ GÜNÜ
+8.4.4
+RADYOLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+40 SERVİS
+20 İŞ GÜNÜ
+8.4.5
+SES KAYDEDİCİ VE OYNATICI CİHAZLAR
+  (CD, DVD, VCD vb.)
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+8.4.6
+MEDYA OYNATICILAR (MP3, MP4
+  vb.)
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+8.4.7
+EV SİNEMA SİSTEMLERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+8.4.8
+SES DÜZENLEYİCİLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4.9
+HOPARLÖRLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.4.10
+KULAKLIKLAR
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+8.4.11
+ELEKTRONİK SÖZLÜKLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4.12
+PROJEKSİYON CİHAZLARI
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+8.4.13
+HESAP MAKİNELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4.14
+ELEKTRONİK PARA KASALARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.4.15
+UYDU ALICILARI
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2
+  ADET OLMAK ÜZERE 7 BÖLGEDE
+TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+8.4.16
+AKILLI TV KUTULARI (SET TOP BOX ve vb.)
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7
+  BÖLGEDE
+TOPLAM
+20 SERVİS
+20 İŞ GÜNÜ
+8.4.17
+UYDU YARDIMIYLA KONUM BELİRLEME CİHAZLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+8.5
+FOTOĞRAF MAKİNELERİ VE
+  KAMERALAR
+8.5.1
+KAMERALAR
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+8.5.2
+FOTOĞRAF MAKİNELERİ
+5 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+8.6
+İNSANSIZ HAVA ARAÇLARI
+8.6.1
+DRONELAR
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+9
+ELEKTRİK ÜRETEN VE DÜZENLEYEN CİHAZLAR
+9.1
+JENERATÖRLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+9.2
+AKÜMÜLATÖRLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+9.3
+KESİNTİSİZ GÜÇ KAYNAKLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+9.4
+DÖNÜŞTÜRÜCÜLER (İNVERTÖR)
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+9.5
+REG
+Ü
+LATÖRLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10
+TAŞITLAR
+10.1
+BİNEK OTOMOBİLLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+45 İŞ GÜNÜ
+10.2
+KAMYONETLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 20
+  SERVİS
+45 İŞ GÜNÜ
+10.3
+MOTOSİKLETLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10
+  SERVİS
+45 İŞ GÜNÜ
+10.4
+ATV ARAÇLARI
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10 SERVİS
+45 İŞ GÜNÜ
+10.5
+MOTORLU BİSİKLETLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10 SERVİS
+45 İŞ GÜNÜ
+10.6
+MOTORLU SCOOTERLAR
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10 SERVİS
+45 İŞ GÜNÜ
+10.7
+DENİZ MOTOSİKLETLERİ
+10 YIL
+1 SERVİS
+45 İŞ GÜNÜ
+10.8
+YATLAR
+10 YIL
+1 SERVİS
+45 İŞ GÜNÜ
+10.9
+KAR MOTOSİKLETLERİ
+10 YIL
+1 SERVİS
+45 İŞ GÜNÜ
+10.10
+BİSİKLETLER
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10
+  SERVİS
+20 İŞ GÜNÜ
+10.11
+ELEKTRİKLİ KAYKAYLAR
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 10
+  SERVİS
+20 İŞ GÜNÜ
+10.12
+ÇOCUKLAR İÇİN AKÜLÜ ARAÇLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+10.13
+KARAVANLAR
+10 YIL
+1 SERVİS
+45 İŞ GÜNÜ
+10.14
+TAŞIT YEDEK PARÇALARI
+10.14.1
+ARAÇ LASTİKLERİ
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.2
+FARLAR
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.3
+GÖSTERGE TABLOSU VE GÖSTERGELER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.4
+MERKEZİ KİLİTLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.5
+EMNİYET KEMERİ VE
+  BAĞLANTILARI
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.6
+EMNİYET CAMLARI
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.7
+EGZOZ BORU VE SUSTURUCULAR
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.8
+ŞARJ DİNAMOSU
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.9
+JANTLAR
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.10
+KATALİTİK KONVERTÖRLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.11
+AMORTİSÖRLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.12
+RADYATÖRLER
+3 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+10.14.13
+OTO KLİMALARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+10.15
+ARAÇ DÖNÜŞÜM KİTLERİ
+10.15.1
+LPG DÖNÜŞÜM KİTLERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+10.15.2
+CNG DÖNÜŞÜM KİTLERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+10.15.3
+ELEKTRİK DÖNÜŞÜM KİTLERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+11
+EV TİPİ DİKİŞ MAKİNELERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM
+  7 SERVİS
+20 İŞ GÜNÜ
+12
+BAHÇELERDE KULLANILAN
+  MAKİNELER
+12.1
+ÇİM-OT-ÇİT KESME MAKİNELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+12.2
+ÇİM BİÇME MAKİNELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+12.3
+ZİNCİRLİ TESTERE MAKİNELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+12.4
+ÇAPALAMA MAKİNELERİ
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+13
+ÖLÇME ALET VE CİHAZLARI
+13.1
+ELEKTRİK SAYAÇLARI
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+13.2
+DOĞALGAZ SAYAÇLARI
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+13.3
+SU SAYAÇLARI
+10 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+13.4
+ISI SAYAÇLARI / ISI ÖLÇERLER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+13.5
+SAATLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+13.6
+AKILLI SAATLER VE BİLEKLİKLER
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+13.7
+DALIŞ SAATLERİ / BİLGİSAYARLARI
+5 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+13.8
+ODA TERMOSTATLARI
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+14
+SPOR VE AV ALETLERİ
+14.1
+SPOR ALETLERİ
+14.1.1
+KONDİSYON BİSİKLETLERİ
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+14.1.2
+KOŞU BANDLARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+14.1.3
+KONDİSYON KÜREĞİ
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+14.1.4
+AĞIRLIK ÇALIŞMA MAKİNELERİ
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+14.2
+AV ALETLERİ
+14.2.1
+AV TÜFEKLERİ
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+15
+EV VE BENZERİ YERLERDE
+  KULLANILAN ELEKTRİKLİ VE GAZLI CİHAZLAR
+15.1
+EV ALETLERİ
+15.1.1
+BUZDOLAPLARI
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 5
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+60 SERVİS
+20 İŞ GÜNÜ
+15.1.2
+DERİN DONDURUCULAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 5
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+60 SERVİS
+20 İŞ GÜNÜ
+15.1.3
+ARAÇ BUZDOLAPLARI
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+15.1.4
+SU SEBİLLERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM 7
+  SERVİS
+20 İŞ GÜNÜ
+15.1.5
+BULAŞIK MAKİNELERİ
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 5
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+60 SERVİS
+20 İŞ GÜNÜ
+15.1.6
+ÇAMAŞIR MAKİNELERİ
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 5
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+60 SERVİS
+20 İŞ GÜNÜ
+15.1.7
+ÇAMAŞIR KURUTMA MAKİNELERİ
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 5
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+60 SERVİS
+20 İŞ GÜNÜ
+15.1.8
+ELEKTRİKLİ SÜPÜRGELER
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.1.9
+FIRINLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.1.10
+OCAKLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.1.11
+PİŞİRME SACLARI
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.1.12
+MİKRODALGA FIRINLAR
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.1.13
+BUHARLI TEMİZLİK MAKİNELERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM
+  7 SERVİS
+20 İŞ GÜNÜ
+15.1.14
+BUZ YAPMA MAKİNELERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM
+  7 SERVİS
+20 İŞ GÜNÜ
+15.1.15
+ÇÖP ÖĞÜTME MAKİNELERİ
+10 YIL
+7 COĞRAFİ BÖLGEDE TOPLAM
+  7 SERVİS
+20 İŞ GÜNÜ
+15.1.16
+KÂĞIT ÖĞÜTME VE EVRAK İMHA MAKİNELERİ
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+15.1.17
+DÜDÜKLÜ TENCERELER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+15.1.18
+ÜTÜLER
+10 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.2
+KİŞİSEL BAKIM ÜRÜNLERİ
+  (PİLLİ ÜRÜNLER HARİÇ)
+15.2.1
+SAÇ KESME MAKİNELERİ
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.2
+SAÇ ŞEKİLLENDİRME CİHAZLARI
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.3
+SAÇ KURUTMA MAKİNELERİ
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.4
+ELEKTRİKLİ TRAŞ MAKİNELERİ
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.5
+EPİLASYON CİHAZLARI
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.6
+SAKAL BIYIK KESME VE DÜZELTME
+  MAKİNELERİ
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.7
+YÜZ MASKESİ MAKİNELERİ
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.2.8
+CİLT TEMİZLEME CİHAZLARI
+5 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 2 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+15 SERVİS
+20 İŞ GÜNÜ
+15.3
+BESİN HAZIRLAYICI CİHAZ VE
+  MAKİNELER
+15.3.1
+EKMEK KIZARTMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.2
+EKMEK KESME MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.3
+EKMEK YAPMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.4
+TOST MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.5
+YOĞURT YAPMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.6
+YUMURTA PİŞİRİCİLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.7
+KARIŞTIRICILAR
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.8
+ÇAY/ KAHVE MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.9
+MEYVE SEBZE SIKACAKLARI
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.10
+ET KIYMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.11
+MISIR PATLATMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.12
+SU ISITICILAR (KETTLE)
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.13
+ELEKTRİKLİ PİŞİRİCİLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.14
+BUHARLI PİŞİRİCİLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.15
+MUTFAK ROBOTLARI
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.16
+FRİTÖZLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.17
+IZGARALAR
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.18
+BLENDERLAR
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.19
+DOĞRAYICILAR
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.20
+GIDA ÖĞÜTÜCÜLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.21
+KAHVE ÖĞÜTÜCÜLER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.22
+ELEKTRİKLİ CEZVELER
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.23
+DONDURMA YAPMA MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3
+  ADET OLMAK ÜZERE 7 BÖLGEDE TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+15.3.24
+WAFFLE MAKİNELERİ
+7 YIL
+HER COĞRAFİ BÖLGEDE EN AZ 3 ADET OLMAK ÜZERE 7 BÖLGEDE
+  TOPLAM
+30 SERVİS
+20 İŞ GÜNÜ
+16
+MÜZİK ALETLERİ
+16.1
+ORGLAR
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+16.2
+PİYANOLAR
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+16.3
+BAĞLAMALAR
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+16.4
+BATERİLER
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+16.5
+GİTARLAR
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+16.6
+KEMANLAR
+7 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+17
+AHŞAP VE METAL MOBİLYALAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+18
+KAPI VE PENCERE SİSTEMLERİ
+18.1
+KAPI VE PENCERELER
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+18.2
+KAPI HİDROLİKLERİ
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+18.3
+KAPI KİLİTLERİ
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+18.4
+KAPI OTOMATLARI
+5 YIL
+SERVİS
+GEREKMEZ
+20 İŞ GÜNÜ
+18.5
+CAM BALKONLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ
+18.6
+ELEKTRİKLİ PANJURLAR
+10 YIL
+1 SERVİS
+20 İŞ GÜNÜ

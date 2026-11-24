@@ -1,202 +1,207 @@
 """
-Honest, Un-Hardcoded Evaluation Harness for Turkish Customer Support RAG & NLU.
+Reproducible Held-Out Evaluation Suite (N=120) -> docs/benchmark.md.
 
-Measures:
-1. Policy-level retrieval ablation (BM25 vs Dense vs Hybrid RRF) on data/eval_retrieval.jsonl (N=21).
-2. NLU Category & Intent classification on data/eval_nlu.jsonl (N=20).
-3. Real CPU latency (ms) and writes results to docs/benchmark.md.
-
-Usage:
-    python scripts/evaluate.py
+Evaluates `data/eval_test.jsonl` across retrieval modes (`lexical`, `dense`,
+`hybrid`, and optionally `hybrid_rerank`), measuring:
+- Answerable retrieval: Hit@1, Recall@3, Recall@5, MRR@5, P50/P95 Latency (ms)
+- Per-bucket retrieval breakdown: colloquial_tr, cross_lingual, legal_exception
+- Full-set abstention: Precision, Recall, F1, False Answer Rate
+- Generation grounding (extractive fallback): Numeric & Citation Grounding Pass Rate
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import platform
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
 import numpy as np
-from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT_DIR))
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
 
-from src.contracts import RetrievalMode  # noqa: E402
-from src.nlu import classify_text, get_nlu_backend  # noqa: E402
-from src.rag_engine import get_rag_engine  # noqa: E402
+from src.contracts import RetrievalMode
+from src.generator import generate_reply
+from src.nlu import classify_text
+from src.rag_engine import HybridRAGEngine
 
-EVAL_RET_PATH = ROOT_DIR / "data" / "eval_retrieval.jsonl"
-EVAL_NLU_PATH = ROOT_DIR / "data" / "eval_nlu.jsonl"
-BENCHMARK_MD = ROOT_DIR / "docs" / "benchmark.md"
+CHUNKS_PATH = ROOT_DIR / "data" / "chunks.jsonl"
+EVAL_TEST_PATH = ROOT_DIR / "data" / "eval_test.jsonl"
+BENCHMARK_OUT = ROOT_DIR / "docs" / "benchmark.md"
 
 
-def _load_jsonl(path: Path) -> list[dict]:
-    with path.open("r", encoding="utf-8") as f:
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    with open(path, "r", encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
 
 
-def evaluate_retrieval(modes: list[RetrievalMode]) -> list[dict]:
-    engine = get_rag_engine()
-    cases = _load_jsonl(EVAL_RET_PATH)
-    rows: list[dict] = []
+def evaluate_mode(engine: HybridRAGEngine, rows: list[dict[str, Any]], mode: RetrievalMode) -> dict[str, Any]:
+    answerable = [r for r in rows if not r["should_abstain"]]
 
-    for mode in modes:
-        hit1 = 0
-        hit3 = 0
-        rr_list: list[float] = []
-        latencies: list[float] = []
-        misses: list[tuple[str, str, str]] = []
-
-        for item in cases:
-            q = item["text"]
-            expected = item["expected_policy_id"]
-            t0 = time.perf_counter()
-            res = engine.retrieve(q, top_k=3, mode=mode)
-            latencies.append((time.perf_counter() - t0) * 1000)
-
-            ids = [ev["policy_id"] for ev in res["top_evidences"]]
-            if ids and ids[0] == expected:
-                hit1 += 1
-            else:
-                misses.append((q, expected, ids[0] if ids else "NONE"))
-
-            if expected in ids:
-                hit3 += 1
-                rr_list.append(1.0 / (ids.index(expected) + 1))
-            else:
-                rr_list.append(0.0)
-
-        n = len(cases)
-        rows.append({
-            "mode": mode,
-            "n": n,
-            "hit1": round(hit1 / n * 100, 1),
-            "hit1_count": f"{hit1}/{n}",
-            "hit3": round(hit3 / n * 100, 1),
-            "hit3_count": f"{hit3}/{n}",
-            "mrr3": round(float(np.mean(rr_list)), 3),
-            "mean_ms": round(float(np.mean(latencies)), 2),
-            "misses": misses,
-        })
-    return rows
-
-
-def evaluate_nlu() -> dict:
-    cases = _load_jsonl(EVAL_NLU_PATH)
-    y_true_cat, y_pred_cat = [], []
-    y_true_int, y_pred_int = [], []
+    hit1 = 0
+    rec3 = 0
+    rec5 = 0
+    rr_sum = 0.0
     latencies: list[float] = []
 
-    for item in cases:
-        t0 = time.perf_counter()
-        res = classify_text(item["text"])
-        latencies.append((time.perf_counter() - t0) * 1000)
-        y_true_cat.append(item["expected_kategori"])
-        y_pred_cat.append(res["category"])
-        y_true_int.append(item["expected_niyet"])
-        y_pred_int.append(res["intent"])
+    bucket_stats: dict[str, dict[str, int]] = {}
 
-    p_cat, r_cat, f1_cat, _ = precision_recall_fscore_support(
-        y_true_cat, y_pred_cat, average="macro", zero_division=0
-    )
-    p_int, r_int, f1_int, _ = precision_recall_fscore_support(
-        y_true_int, y_pred_int, average="macro", zero_division=0
-    )
-    labels = sorted(set(y_true_cat + y_pred_cat))
-    cm = confusion_matrix(y_true_cat, y_pred_cat, labels=labels)
+    tp_abs = 0  # expected abstain=True, predicted abstain=True
+    fp_abs = 0  # expected abstain=False, predicted abstain=True
+    fn_abs = 0  # expected abstain=True, predicted abstain=False
+    tn_abs = 0  # expected abstain=False, predicted abstain=False
+
+    num_pass = 0
+    cite_pass = 0
+
+    for row in rows:
+        t0 = time.perf_counter()
+        res = engine.retrieve(row["query"], top_k=5, mode=mode)
+        lat_ms = (time.perf_counter() - t0) * 1000
+        latencies.append(lat_ms)
+
+        pred_abs = res["abstained"]
+        gold_abs = bool(row["should_abstain"])
+        if gold_abs and pred_abs:
+            tp_abs += 1
+        elif not gold_abs and pred_abs:
+            fp_abs += 1
+        elif gold_abs and not pred_abs:
+            fn_abs += 1
+        else:
+            tn_abs += 1
+
+        if not gold_abs:
+            expected = set(row["expected_citations"])
+            top_tags = [ev["citation_tag"] for ev in res["top_evidences"]]
+            bucket = row["bucket"]
+            if bucket not in bucket_stats:
+                bucket_stats[bucket] = {"n": 0, "hit1": 0, "rec3": 0, "rec5": 0}
+            bucket_stats[bucket]["n"] += 1
+
+            if top_tags and top_tags[0] in expected:
+                hit1 += 1
+                bucket_stats[bucket]["hit1"] += 1
+            if any(t in expected for t in top_tags[:3]):
+                rec3 += 1
+                bucket_stats[bucket]["rec3"] += 1
+            if any(t in expected for t in top_tags[:5]):
+                rec5 += 1
+                bucket_stats[bucket]["rec5"] += 1
+
+            for rank, tag in enumerate(top_tags[:5], start=1):
+                if tag in expected:
+                    rr_sum += 1.0 / rank
+                    break
+
+        nlu_res = classify_text(row["query"])
+        gen_res = generate_reply(
+            message=row["query"],
+            evidences=res["top_evidences"],
+            nlu=nlu_res,
+            grounding_verified=res["grounding_verified"],
+            abstained=pred_abs,
+            use_llm=False,
+        )
+        if gen_res["numeric_grounding_passed"]:
+            num_pass += 1
+        if gen_res["citation_grounding_passed"]:
+            cite_pass += 1
+
+    n_ans = max(1, len(answerable))
+    n_all = max(1, len(rows))
+    n_traps = max(1, tp_abs + fn_abs)
+    abs_prec = tp_abs / max(1, tp_abs + fp_abs)
+    abs_rec = tp_abs / n_traps
+    abs_f1 = (2 * abs_prec * abs_rec / (abs_prec + abs_rec)) if (abs_prec + abs_rec) > 0 else 0.0
+    false_answer_rate = fn_abs / n_traps
 
     return {
-        "n": len(cases),
-        "backend": get_nlu_backend(),
-        "cat_f1": round(float(f1_cat) * 100, 1),
-        "cat_p": round(float(p_cat) * 100, 1),
-        "cat_r": round(float(r_cat) * 100, 1),
-        "int_f1": round(float(f1_int) * 100, 1),
-        "int_p": round(float(p_int) * 100, 1),
-        "int_r": round(float(r_int) * 100, 1),
-        "mean_ms": round(float(np.mean(latencies)), 3),
-        "labels": labels,
-        "cm": cm.tolist(),
+        "mode": mode,
+        "n_total": len(rows),
+        "n_answerable": len(answerable),
+        "hit1": hit1 / n_ans,
+        "recall3": rec3 / n_ans,
+        "recall5": rec5 / n_ans,
+        "mrr5": rr_sum / n_ans,
+        "p50_ms": float(np.percentile(latencies, 50)),
+        "p95_ms": float(np.percentile(latencies, 95)),
+        "abs_precision": abs_prec,
+        "abs_recall": abs_rec,
+        "abs_f1": abs_f1,
+        "false_answer_rate": false_answer_rate,
+        "numeric_grounding_rate": num_pass / n_all,
+        "citation_grounding_rate": cite_pass / n_all,
+        "buckets": bucket_stats,
     }
 
 
 def main() -> None:
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
+    engine = HybridRAGEngine()
+    rows = load_jsonl(EVAL_TEST_PATH)
 
-    engine = get_rag_engine()
-    modes: list[RetrievalMode] = ["bm25", "dense", "hybrid"]
+    modes: list[RetrievalMode] = ["lexical"]
+    if engine.encoder.is_active:
+        modes.extend(["dense", "hybrid"])
     if engine.reranker_model is not None:
         modes.append("hybrid_rerank")
 
-    ret_rows = evaluate_retrieval(modes)
-    nlu_res = evaluate_nlu()
+    results = [evaluate_mode(engine, rows, m) for m in modes]
 
-    print(f"Dense backend: {engine.dense.backend}")
-    print(f"NLU backend:   {nlu_res['backend']}")
-    print("\n--- Retrieval Ablation (Policy-Level, N=21) ---")
-    for r in ret_rows:
-        print(
-            f"{r['mode']:14s} | Hit@1: {r['hit1']:5.1f}% ({r['hit1_count']}) | "
-            f"Hit@3: {r['hit3']:5.1f}% ({r['hit3_count']}) | MRR@3: {r['mrr3']:.3f} | "
-            f"Mean: {r['mean_ms']:.2f} ms"
-        )
+    chunks_sha = sha256_file(CHUNKS_PATH)
+    eval_sha = sha256_file(EVAL_TEST_PATH)
 
-    print("\n--- NLU Held-Out Eval (N=20) ---")
-    print(
-        f"Category Macro F1: {nlu_res['cat_f1']:.1f}% | "
-        f"Intent Macro F1: {nlu_res['int_f1']:.1f}% | Mean: {nlu_res['mean_ms']:.3f} ms"
-    )
-
-    BENCHMARK_MD.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "# Benchmark Report (Measured)",
+        "# Benchmark Report (Held-Out Evaluation, N = 120)",
         "",
-        f"- **Corpus:** {len(engine.policies)} Turkish e-commerce support policies (`data/policies.json`)",
-        f"- **Dense Backend:** `{engine.dense.backend}`",
+        f"- **Environment:** Python `{platform.python_version()}` on `{platform.system()} {platform.machine()}`",
+        f"- **Store Backend:** `{engine.store.backend_name}` (`{engine.store.count_chunks()}` chunks)",
+        f"- **Dense Encoder:** `{engine.encoder.backend}`",
         f"- **Reranker:** `{engine.reranker_name or 'disabled'}`",
-        f"- **NLU Backend:** `{nlu_res['backend']}`",
-        f"- **Environment:** Python {platform.python_version()} on {platform.system()} ({platform.machine()})",
+        f"- **Corpus SHA-256 (`data/chunks.jsonl`):** `{chunks_sha}`",
+        f"- **Held-Out Eval SHA-256 (`data/eval_test.jsonl`):** `{eval_sha}`",
         "",
-        "## 1. Policy-Level Retrieval Ablation (`data/eval_retrieval.jsonl`, N=21)",
+        "## 1. Retrieval, Abstention & Grounding Summary (`eval_test.jsonl`, N = 120)",
         "",
-        "| Mode | Policy Hit@1 | Policy Hit@3 | MRR@3 | Mean Latency (ms) |",
-        "| :--- | :---: | :---: | :---: | :---: |",
+        "| Mode | Hit@1 (N=95) | Recall@3 | Recall@5 | MRR@5 | Abs. Prec | Abs. Rec | Abs. F1 | False Ans. Rate | Num. Grounding | Cite. Grounding | P50 (ms) | P95 (ms) |",
+        "| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for r in ret_rows:
+
+    for r in results:
         lines.append(
-            f"| `{r['mode']}` | {r['hit1']:.1f}% ({r['hit1_count']}) | "
-            f"{r['hit3']:.1f}% ({r['hit3_count']}) | {r['mrr3']:.3f} | {r['mean_ms']:.2f} |"
+            f"| `{r['mode']}` | {r['hit1']*100:.1f}% | {r['recall3']*100:.1f}% | {r['recall5']*100:.1f}% | "
+            f"{r['mrr5']:.3f} | {r['abs_precision']*100:.1f}% | {r['abs_recall']*100:.1f}% | "
+            f"{r['abs_f1']*100:.1f}% | {r['false_answer_rate']*100:.1f}% | "
+            f"{r['numeric_grounding_rate']*100:.1f}% | {r['citation_grounding_rate']*100:.1f}% | "
+            f"{r['p50_ms']:.2f} | {r['p95_ms']:.2f} |"
         )
 
     lines.extend([
         "",
-        "## 2. NLU Classification (`data/eval_nlu.jsonl`, N=20)",
+        "## 2. Stratified Answerable Bucket Breakdown (Hybrid Mode)",
         "",
-        "| Task | Macro F1 | Macro Precision | Macro Recall | Mean Latency (ms) |",
-        "| :--- | :---: | :---: | :---: | :---: |",
-        f"| Category (5 classes) | {nlu_res['cat_f1']:.1f}% | {nlu_res['cat_p']:.1f}% | {nlu_res['cat_r']:.1f}% | {nlu_res['mean_ms']:.3f} |",
-        f"| Intent (3 classes) | {nlu_res['int_f1']:.1f}% | {nlu_res['int_p']:.1f}% | {nlu_res['int_r']:.1f}% | — |",
-        "",
-        f"Category confusion matrix labels: `{nlu_res['labels']}`",
-        "```",
-        *[str(row) for row in nlu_res["cm"]],
-        "```",
-        "",
-        "## 3. Misses in `hybrid` Mode",
-        "",
+        "| Bucket | Queries | Hit@1 | Recall@3 | Recall@5 |",
+        "| :--- | ---: | ---: | ---: | ---: |",
     ])
-    hybrid_row = next((r for r in ret_rows if r["mode"] == "hybrid"), None)
-    if hybrid_row and hybrid_row["misses"]:
-        for q, exp, got in hybrid_row["misses"]:
-            lines.append(f"- Expected `{exp}`, got `{got}`: {q}")
-    else:
-        lines.append("- None (21/21 Hit@1).")
+    hybrid_res = next((r for r in results if r["mode"] == "hybrid"), results[-1])
+    for b_name, bs in hybrid_res["buckets"].items():
+        n = max(1, bs["n"])
+        lines.append(
+            f"| `{b_name}` | {bs['n']} | {bs['hit1']/n*100:.1f}% | {bs['rec3']/n*100:.1f}% | {bs['rec5']/n*100:.1f}% |"
+        )
 
-    BENCHMARK_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"\nWrote {BENCHMARK_MD}")
+    BENCHMARK_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    print(f"Wrote {BENCHMARK_OUT}")
+    print("\n".join(lines))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 """
-FastAPI server for the Turkish Customer Support Voice & Text RAG Assistant.
+FastAPI server for the Turkish Customer Support Voice & Text RAG v2 Assistant.
 
 Run locally:
     uvicorn src.server:app --host 127.0.0.1 --port 8000
@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from src import generator, nlu, rag_engine
+from src.contracts import CategoryType, RetrievalFilter
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB_DIR = ROOT / "web"
@@ -22,9 +23,10 @@ WEB_DIR = ROOT / "web"
 _state = {
     "ready": False,
     "nlu_backend": "uninitialized",
+    "store_backend": "uninitialized",
     "dense_backend": "uninitialized",
     "reranker_active": False,
-    "policy_count": 0,
+    "chunk_count": 0,
 }
 
 
@@ -32,16 +34,17 @@ _state = {
 async def lifespan(_app: FastAPI):
     engine = rag_engine.get_rag_engine()
     _state["nlu_backend"] = nlu.get_nlu_backend()
-    _state["dense_backend"] = engine.dense.backend
+    _state["store_backend"] = engine.store.backend_name
+    _state["dense_backend"] = engine.encoder.backend
     _state["reranker_active"] = engine.reranker_model is not None
-    _state["policy_count"] = len(engine.policies)
+    _state["chunk_count"] = engine.store.count_chunks()
     _state["ready"] = True
     yield
 
 
 app = FastAPI(
-    title="Turkish Customer Support RAG Assistant",
-    version="1.0.0",
+    title="Turkish Customer Support RAG v2 Assistant",
+    version="2.0.0",
     docs_url="/api/docs",
     redoc_url=None,
     lifespan=lifespan,
@@ -51,7 +54,10 @@ app = FastAPI(
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     top_k: int = Field(3, ge=1, le=5)
-    retrieval_mode: Literal["bm25", "dense", "hybrid", "hybrid_rerank"] = "hybrid"
+    retrieval_mode: Literal["lexical", "bm25", "dense", "hybrid", "hybrid_rerank"] = "hybrid"
+    doc_id: str | None = None
+    category: CategoryType | None = None
+    lang: str | None = None
     use_llm: bool = True
     model: str | None = None
 
@@ -62,9 +68,11 @@ def health():
     models = generator.installed_models()
     return {
         "ready": _state["ready"] or True,
-        "policy_count": len(engine.policies),
+        "chunk_count": engine.store.count_chunks(),
+        "policy_count": engine.store.count_chunks(),
+        "store_backend": engine.store.backend_name,
         "nlu_backend": nlu.get_nlu_backend(),
-        "rag_dense_backend": engine.dense.backend,
+        "rag_dense_backend": engine.encoder.backend,
         "rag_reranker_active": engine.reranker_model is not None,
         "ollama_available": bool(models),
         "ollama_model": generator.pick_model(None, models),
@@ -72,14 +80,25 @@ def health():
     }
 
 
+@app.get("/api/chunks")
 @app.get("/api/policies")
-def list_policies():
+def list_chunks(limit: int = 500):
     engine = rag_engine.get_rag_engine()
+    chunks = engine.store.list_chunks(limit=min(max(limit, 1), 1000))
     return {
-        "count": len(engine.policies),
-        "policies": [
-            {"id": p["id"], "category": p["category"], "title": p["title"], "text": p["text"]}
-            for p in engine.policies
+        "count": len(chunks),
+        "chunks": [
+            {
+                "chunk_id": c["chunk_id"],
+                "doc_id": c["doc_id"],
+                "article_no": c["article_no"],
+                "citation_tag": c["citation_tag"],
+                "category": c["category"],
+                "lang": c["lang"],
+                "title": c["title"],
+                "text": c["content"],
+            }
+            for c in chunks
         ],
     }
 
@@ -87,26 +106,41 @@ def list_policies():
 @app.post("/api/chat")
 def chat(body: ChatRequest):
     nlu_res = nlu.classify_text(body.message)
+    filters: RetrievalFilter = {}
+    if body.doc_id:
+        filters["doc_id"] = body.doc_id
+    if body.category:
+        filters["category"] = body.category
+    if body.lang:
+        filters["lang"] = body.lang
+
     rag_res = rag_engine.retrieve_policies(
         body.message,
         top_k=body.top_k,
         mode=body.retrieval_mode,
+        filters=filters or None,
     )
-    top_ev = rag_res["top_evidences"][0] if rag_res["top_evidences"] else None
+    top_ev = rag_res["top_evidences"][0] if (rag_res["top_evidences"] and not rag_res["abstained"]) else None
 
     gen_res = generator.generate_reply(
         message=body.message,
-        evidence=top_ev,
+        evidences=rag_res["top_evidences"],
         nlu=nlu_res,
         grounding_verified=rag_res["grounding_verified"],
+        abstained=rag_res["abstained"],
         use_llm=body.use_llm,
         requested_model=body.model,
     )
 
     return {
         "reply": gen_res["reply"],
+        "abstained": rag_res["abstained"],
+        "abstention_reason": rag_res["abstention_reason"],
         "policy": {
-            "id": top_ev["policy_id"] if top_ev else "",
+            "id": top_ev["chunk_id"] if top_ev else "",
+            "doc_id": top_ev["doc_id"] if top_ev else "",
+            "article_no": top_ev["article_no"] if top_ev else "",
+            "citation_tag": top_ev["citation_tag"] if top_ev else "",
             "title": top_ev["title"] if top_ev else "",
             "category": top_ev["category"] if top_ev else "",
             "text": top_ev["content"] if top_ev else "",
@@ -115,7 +149,10 @@ def chat(body: ChatRequest):
         "nlu": nlu_res,
         "grounding": {
             "retrieval_verified": rag_res["grounding_verified"],
+            "abstained": rag_res["abstained"],
             "numeric_grounding_passed": gen_res["numeric_grounding_passed"],
+            "citation_grounding_passed": gen_res["citation_grounding_passed"],
+            "ungrounded_citations": gen_res["ungrounded_citations"],
             "attempts": gen_res["attempts"],
         },
         "timings_ms": {
@@ -125,6 +162,7 @@ def chat(body: ChatRequest):
             "generation": gen_res["latency_ms"],
         },
         "backends": {
+            "store": rag_res["store_backend"],
             "nlu": nlu_res["model_name"],
             "retrieval_mode": rag_res["mode"],
             "dense": rag_res["dense_backend"],

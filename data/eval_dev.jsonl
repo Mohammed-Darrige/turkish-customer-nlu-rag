@@ -1,0 +1,30 @@
+{"id": "DEV_01", "bucket": "colloquial_tr", "query": "internetten aldığım kulaklığı 14 gün içinde sebep göstermeden geri verebilir miyim", "should_abstain": false, "expected_citations": ["mesafeli_sozlesmeler:Madde 9", "kanun_6502:Madde 48"]}
+{"id": "DEV_02", "bucket": "colloquial_tr", "query": "iade ederken kargo parasını benden kesebilirler mi", "should_abstain": false, "expected_citations": ["mesafeli_sozlesmeler:Madde 12", "mesafeli_sozlesmeler:Madde 13"]}
+{"id": "DEV_03", "bucket": "colloquial_tr", "query": "ürünüm bozuk çıktı değişim mi isteyeyim para iadesi mi", "should_abstain": false, "expected_citations": ["kanun_6502:Madde 11"]}
+{"id": "DEV_04", "bucket": "colloquial_tr", "query": "garanti süresi en az kaç yıl oluyor", "should_abstain": false, "expected_citations": ["kanun_6502:Madde 56", "garanti_belgesi:Madde 6"]}
+{"id": "DEV_05", "bucket": "colloquial_tr", "query": "tamire verdiğim telefon en geç kaç iş gününde dönmeli", "should_abstain": false, "expected_citations": ["satis_sonrasi:Madde 10", "garanti_belgesi:Madde 9"]}
+{"id": "DEV_06", "bucket": "colloquial_tr", "query": "kargo kutusu ezilmiş ıslanmış ne yapmam lazım", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_KARGO_02"]}
+{"id": "DEV_07", "bucket": "colloquial_tr", "query": "kredi kartına iade kaç günde geçer", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_IADE_02", "mesafeli_sozlesmeler:Madde 12"]}
+{"id": "DEV_08", "bucket": "colloquial_tr", "query": "siparişim kargoya verilmiş mi nereden takip ederim", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_KARGO_01"]}
+{"id": "DEV_09", "bucket": "colloquial_tr", "query": "faturam mailime gelmedi nasıl indiririm", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_TEKNIK_01"]}
+{"id": "DEV_10", "bucket": "colloquial_tr", "query": "3d secure hatası verdi ama kartımdan iki kez para çekilmiş", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_TEKNIK_02"]}
+{"id": "DEV_11", "bucket": "colloquial_tr", "query": "kişiye özel yaptırdığım yüzüğü iade edebilir miyim", "should_abstain": false, "expected_citations": ["mesafeli_sozlesmeler:Madde 15"]}
+{"id": "DEV_12", "bucket": "colloquial_tr", "query": "paketi açılmış iç çamaşırı iade alınır mı", "should_abstain": false, "expected_citations": ["mesafeli_sozlesmeler:Madde 15"]}
+{"id": "DEV_13", "bucket": "colloquial_tr", "query": "satıcı bana 30 gün içinde ürünü göndermezse ne olur", "should_abstain": false, "expected_citations": ["mesafeli_sozlesmeler:Madde 16"]}
+{"id": "DEV_14", "bucket": "colloquial_tr", "query": "tüketici hakem heyetine başvurmadan önce arabulucu şart mı", "should_abstain": false, "expected_citations": ["kanun_6502:Madde 73/a", "mesafeli_sozlesmeler:Madde 5"]}
+{"id": "DEV_15", "bucket": "colloquial_tr", "query": "satın aldığım ürün 6 ay içinde bozuldu kim ispatlayacak", "should_abstain": false, "expected_citations": ["kanun_6502:Madde 10"]}
+{"id": "DEV_16", "bucket": "colloquial_tr", "query": "kapıda nakit ödediğim ürünün iadesi nasıl yatıyor", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_IADE_04"]}
+{"id": "DEV_17", "bucket": "cross_lingual", "query": "how can I get a free return shipping code for my order", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_IADE_EN_01", "store_ops_faq:OPS_IADE_01"]}
+{"id": "DEV_18", "bucket": "cross_lingual", "query": "when does a credit card refund appear in my bank account", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_IADE_EN_02", "store_ops_faq:OPS_IADE_02"]}
+{"id": "DEV_19", "bucket": "cross_lingual", "query": "كيف أحصل على رمز الإرجاع المجاني لطلبي", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_IADE_AR_01"]}
+{"id": "DEV_20", "bucket": "cross_lingual", "query": "الطرد وصل تالف ومبلل ماذا أفعل مع المندوب", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_KARGO_AR_02"]}
+{"id": "DEV_21", "bucket": "colloquial_tr", "query": "yetkili servis tamir ederken garanti süresi uzar mı", "should_abstain": false, "expected_citations": ["garanti_belgesi:Madde 10", "satis_sonrasi:Madde 10"]}
+{"id": "DEV_22", "bucket": "colloquial_tr", "query": "müşteri hizmetleri pazar günü açık mı", "should_abstain": false, "expected_citations": ["store_ops_faq:OPS_GENEL_01"]}
+{"id": "DEV_23", "bucket": "abstention_trap", "query": "kıdem tazminatı hesaplaması iş kanununa göre nasıl yapılır", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_24", "bucket": "abstention_trap", "query": "kripto para alım satım gelir vergisi beyannamesi ne zaman verilir", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_25", "bucket": "abstention_trap", "query": "ankara keçiören mağazanızın otopark ücreti saatlik ne kadar", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_26", "bucket": "abstention_trap", "query": "trafik cezasına itiraz dilekçesi hangi sulh ceza hakimliğine verilir", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_27", "bucket": "abstention_trap", "query": "belediye emlak vergisi ikinci taksit son ödeme tarihi nedir", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_28", "bucket": "abstention_trap", "query": "python pandas dataframe içinde eksik değerleri nasıl doldururum", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_29", "bucket": "abstention_trap", "query": "passaport randevusu nüfus müdürlüğünden nasıl alınır", "should_abstain": true, "expected_citations": []}
+{"id": "DEV_30", "bucket": "abstention_trap", "query": "what is the capital city of Brazil and its population", "should_abstain": true, "expected_citations": []}

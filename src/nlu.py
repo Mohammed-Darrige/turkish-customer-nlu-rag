@@ -8,10 +8,11 @@ NLU_CATEGORY_MODEL and NLU_INTENT_MODEL environment variables are explicitly set
 from __future__ import annotations
 
 import os
+import re
 import time
 from typing import Any
 
-from src.contracts import CategoryType, IntentType, NLUResult
+from src.contracts import CategoryType, IntentType, LangType, NLUResult
 
 _kat_pipe: Any = None
 _niyet_pipe: Any = None
@@ -69,6 +70,26 @@ _CHARMAP = str.maketrans({
 def normalize_turkish(text: str) -> str:
     """Lowercases and maps Turkish diacritics to ASCII equivalents."""
     return text.lower().translate(_CHARMAP)
+
+
+_ARABIC_RE = re.compile(r"[\u0600-\u06FF]")
+_TR_CHAR_RE = re.compile(r"[çğıöşüÇĞİÖŞÜ]")
+_EN_HINT_WORDS = {
+    "return", "refund", "shipping", "order", "warranty", "broken", "damaged",
+    "cancel", "delivery", "invoice", "tracking", "how", "what", "when", "can",
+}
+
+
+def detect_language(text: str) -> LangType:
+    """Heuristic language detector for tr / ar / en customer queries."""
+    if _ARABIC_RE.search(text):
+        return "ar"
+    if _TR_CHAR_RE.search(text):
+        return "tr"
+    words = set(re.findall(r"[a-z]+", text.lower()))
+    if len(words & _EN_HINT_WORDS) >= 1:
+        return "en"
+    return "tr"
 
 
 def init_nlu_models() -> bool:
@@ -129,6 +150,7 @@ def classify_text(text: str) -> NLUResult:
                 0.90 * intent_conf if intent == "tesekkur" else 0.0
             )
             return {
+                "language": detect_language(clean_text),
                 "category": category,  # type: ignore[typeddict-item]
                 "category_confidence": round(cat_conf, 4),
                 "intent": intent,  # type: ignore[typeddict-item]
@@ -176,6 +198,7 @@ def classify_text(text: str) -> NLUResult:
         sentiment = 0.0
 
     return {
+        "language": detect_language(clean_text),
         "category": matched_cat,
         "category_confidence": round(cat_conf, 4),
         "intent": matched_intent,

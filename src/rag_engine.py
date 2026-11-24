@@ -1,99 +1,58 @@
 """
-Hybrid Turkish RAG Engine (Okapi BM25 + Multilingual-E5 Dense + RRF).
+Hybrid Turkish & Multilingual RAG Engine v2.
 
-Supports explicit retrieval modes ('bm25', 'dense', 'hybrid', 'hybrid_rerank')
-for reproducible ablation and transparent backend reporting.
+Orchestrates a pluggable `RetrieverStore` (`PgVectorStore` or `InMemoryStore`),
+dense embeddings (`intfloat/multilingual-e5-small`), optional Cross-Encoder
+reranking, and a calibrated abstention gate. Contains zero hardcoded keyword
+bonuses (`kw_bonus` removed).
 """
 from __future__ import annotations
 
 import json
-import math
 import os
-import re
 import time
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
-from src.contracts import RAGResult, RetrievalMode, RetrievedEvidence
-from src.nlu import normalize_turkish
+from src.contracts import (
+    DocumentChunk,
+    RAGResult,
+    RetrievalFilter,
+    RetrievalMode,
+    RetrievedEvidence,
+)
+from src.stores.base import RetrieverStore, StoreHit
+from src.stores.memory_store import InMemoryStore, tokenize_text
+from src.stores.pgvector_store import PgVectorStore
 
 os.environ.setdefault("HF_DEACTIVATE_ASYNC_LOAD", "1")
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-POLICIES_PATH = ROOT_DIR / "data" / "policies.json"
+CHUNKS_PATH = ROOT_DIR / "data" / "chunks.jsonl"
 DEFAULT_EMBEDDING_MODEL = "intfloat/multilingual-e5-small"
 RRF_K = 60
 CE_WEIGHT = 0.5
-DENSE_GROUNDING_THRESHOLD = 0.78
-
-TURKISH_STOPWORDS = {
-    "ve", "veya", "ile", "icin", "gibi", "bir", "bu", "su", "o", "ne",
-    "nasil", "nerede", "mi", "mu", "miyim", "miyiz", "hala", "cok",
-    "daha", "ben", "bana", "benim", "sen", "sana", "biz", "bize", "de", "da",
-    "ise", "ki", "ama", "fakat", "lakin", "ancak", "ya", "hem", "her", "hic",
-}
+DEFAULT_ABSTAIN_DENSE_THRESHOLD = float(os.getenv("RAG_ABSTAIN_DENSE_THRESHOLD", "0.845"))
+DEFAULT_ABSTAIN_LEXICAL_THRESHOLD = float(os.getenv("RAG_ABSTAIN_LEXICAL_THRESHOLD", "2.0"))
 
 
-def tokenize_turkish(text: str) -> list[str]:
-    """Normalizes Turkish text and returns filtered alphanumeric tokens."""
-    norm = normalize_turkish(text)
-    words = re.findall(r"[a-z0-9]+", norm)
-    return [w for w in words if len(w) > 2 and w not in TURKISH_STOPWORDS]
+def load_chunks_jsonl(path: Path = CHUNKS_PATH) -> list[DocumentChunk]:
+    chunks: list[DocumentChunk] = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            s = line.strip()
+            if s:
+                chunks.append(json.loads(s))
+    return chunks
 
 
-class BM25Retriever:
-    """In-memory Okapi BM25 index over the policy corpus."""
+class EmbeddingEncoder:
+    """Lazy wrapper around sentence-transformers for query and passage encoding."""
 
-    def __init__(self, docs: list[dict[str, Any]], k1: float = 1.5, b: float = 0.75):
-        self.k1 = k1
-        self.b = b
-        self.docs = docs
-        self.corpus_size = len(docs)
-        self.tokenized_docs = [
-            tokenize_turkish(f"{d['title']} {d['text']} {' '.join(d.get('keywords', []))}")
-            for d in docs
-        ]
-        self.doc_lens = [len(td) for td in self.tokenized_docs]
-        self.avg_doc_len = sum(self.doc_lens) / max(1, self.corpus_size)
-
-        self.df: dict[str, int] = {}
-        for td in self.tokenized_docs:
-            for term in set(td):
-                self.df[term] = self.df.get(term, 0) + 1
-
-        self.idf: dict[str, float] = {
-            term: math.log(1.0 + (self.corpus_size - freq + 0.5) / (freq + 0.5))
-            for term, freq in self.df.items()
-        }
-
-    def score(self, query: str) -> list[float]:
-        q_tokens = tokenize_turkish(query)
-        scores: list[float] = []
-        for doc_tokens, doc_len in zip(self.tokenized_docs, self.doc_lens):
-            score = 0.0
-            doc_counts: dict[str, int] = {}
-            for t in doc_tokens:
-                doc_counts[t] = doc_counts.get(t, 0) + 1
-            for qt in q_tokens:
-                if qt in doc_counts:
-                    tf = doc_counts[qt]
-                    idf = self.idf.get(qt, 0.0)
-                    num = tf * (self.k1 + 1.0)
-                    den = tf + self.k1 * (1.0 - self.b + self.b * (doc_len / self.avg_doc_len))
-                    score += idf * (num / den)
-            scores.append(score)
-        return scores
-
-
-class DenseRetriever:
-    """Semantic vector retriever using sentence-transformers (multilingual-e5-small)."""
-
-    def __init__(self, docs: list[dict[str, Any]]):
-        self.docs = docs
+    def __init__(self) -> None:
         self.model: Any = None
-        self.doc_embeddings: np.ndarray | None = None
         self.backend: str = "disabled"
         self._init_model()
 
@@ -107,45 +66,56 @@ class DenseRetriever:
             from sentence_transformers import SentenceTransformer
 
             self.model = SentenceTransformer(model_name)
-            passages = [f"passage: {d['title']} - {d['text']}" for d in self.docs]
-            self.doc_embeddings = self.model.encode(
-                passages, normalize_embeddings=True, show_progress_bar=False
-            )
             self.backend = f"sentence_transformers:{model_name}"
         except Exception:
             self.model = None
-            self.doc_embeddings = None
-            self.backend = "jaccard_fallback"
+            self.backend = "unavailable"
 
-    def score(self, query: str) -> list[float]:
-        if self.model is not None and self.doc_embeddings is not None:
-            q_emb = self.model.encode(
-                [f"query: {query}"], normalize_embeddings=True, show_progress_bar=False
-            )[0]
-            return np.dot(self.doc_embeddings, q_emb).tolist()
+    @property
+    def is_active(self) -> bool:
+        return self.model is not None
 
-        if self.backend == "disabled":
-            return [0.0 for _ in self.docs]
+    def encode_passages(self, chunks: list[DocumentChunk]) -> list[list[float]] | None:
+        if self.model is None or not chunks:
+            return None
+        passages = [f"passage: {c['title']} - {c['content']}" for c in chunks]
+        embs = self.model.encode(passages, normalize_embeddings=True, show_progress_bar=False)
+        return np.asarray(embs, dtype=np.float32).tolist()
 
-        # Transparent Jaccard overlap fallback only when dense was requested but failed to load
-        q_tokens = set(tokenize_turkish(query))
-        scores: list[float] = []
-        for d in self.docs:
-            d_tokens = set(tokenize_turkish(f"{d['title']} {d['text']}"))
-            union = len(q_tokens | d_tokens)
-            scores.append(float(len(q_tokens & d_tokens) / union) if union else 0.0)
-        return scores
+    def encode_query(self, query: str) -> list[float] | None:
+        if self.model is None:
+            return None
+        emb = self.model.encode([f"query: {query}"], normalize_embeddings=True, show_progress_bar=False)[0]
+        return np.asarray(emb, dtype=np.float32).tolist()
+
+
+def _create_store() -> RetrieverStore:
+    backend = os.getenv("RAG_STORE_BACKEND", "auto").strip().lower()
+    db_url = os.getenv("DATABASE_URL", "").strip()
+    if backend == "pgvector" or (backend == "auto" and db_url):
+        if not db_url:
+            raise ValueError("RAG_STORE_BACKEND=pgvector requires DATABASE_URL to be set.")
+        return PgVectorStore(db_url)
+    return InMemoryStore()
 
 
 class HybridRAGEngine:
-    """Orchestrates BM25, Dense E5, RRF fusion, and optional Cross-Encoder reranking."""
+    """Orchestrates RetrieverStore, Dense E5, CrossEncoder reranker, and abstention."""
 
-    def __init__(self, policies_path: Path = POLICIES_PATH):
-        with open(policies_path, "r", encoding="utf-8") as f:
-            self.policies: list[dict[str, Any]] = json.load(f)
+    def __init__(
+        self,
+        chunks_path: Path = CHUNKS_PATH,
+        store: RetrieverStore | None = None,
+    ) -> None:
+        self.chunks: list[DocumentChunk] = load_chunks_jsonl(chunks_path)
+        self.encoder = EmbeddingEncoder()
+        self.store: RetrieverStore = store if store is not None else _create_store()
 
-        self.bm25 = BM25Retriever(self.policies)
-        self.dense = DenseRetriever(self.policies)
+        # Index chunks into the store if empty (or always for InMemoryStore)
+        if self.store.backend_name == "in_memory" or self.store.count_chunks() < len(self.chunks):
+            embeddings = self.encoder.encode_passages(self.chunks)
+            self.store.upsert_chunks(self.chunks, embeddings)
+
         self.reranker_model: Any = None
         self.reranker_name: str | None = None
         self._init_reranker()
@@ -163,102 +133,123 @@ class HybridRAGEngine:
             self.reranker_model = None
             self.reranker_name = None
 
+    def _evaluate_abstention(
+        self,
+        query: str,
+        top_hit: StoreHit | None,
+        mode: RetrievalMode,
+    ) -> tuple[bool, str | None]:
+        if top_hit is None:
+            return True, "no_candidates"
+
+        q_tokens = set(tokenize_text(query))
+        c = top_hit["chunk"]
+        doc_tokens = set(tokenize_text(f"{c['title']} {c['content']}"))
+        overlap = len(q_tokens & doc_tokens)
+
+        dense_active = self.encoder.is_active and mode != "lexical" and mode != "bm25"
+        if dense_active:
+            if top_hit["dense_score"] < DEFAULT_ABSTAIN_DENSE_THRESHOLD:
+                return (
+                    True,
+                    f"low_relevance(dense={top_hit['dense_score']:.3f}<{DEFAULT_ABSTAIN_DENSE_THRESHOLD})",
+                )
+            return False, None
+
+        # Lexical-only abstention check
+        if top_hit["lexical_score"] < DEFAULT_ABSTAIN_LEXICAL_THRESHOLD and overlap < 2:
+            return (
+                True,
+                f"low_lexical_relevance(score={top_hit['lexical_score']:.3f},overlap={overlap})",
+            )
+        return False, None
+
     def retrieve(
         self,
         query: str,
         top_k: int = 3,
         mode: RetrievalMode = "hybrid",
+        filters: RetrievalFilter | None = None,
     ) -> RAGResult:
         t0 = time.perf_counter()
+        normalized_mode: RetrievalMode = "lexical" if mode == "bm25" else mode
+        pool_k = max(top_k * 4, 20)
 
-        bm25_scores = self.bm25.score(query)
-        bm25_ranked = np.argsort(bm25_scores)[::-1]
-        bm25_rank_dict = {int(idx): rank for rank, idx in enumerate(bm25_ranked)}
+        query_emb = None
+        if normalized_mode != "lexical" and self.encoder.is_active:
+            query_emb = self.encoder.encode_query(query)
 
-        dense_active = self.dense.backend.startswith("sentence_transformers:")
-        if mode == "bm25" or self.dense.backend == "disabled":
-            dense_scores = [0.0] * len(self.policies)
-            dense_rank_dict = bm25_rank_dict
+        if normalized_mode == "lexical":
+            hits = self.store.search_lexical(query, limit=pool_k, filters=filters)
+        elif normalized_mode == "dense" and query_emb is not None:
+            hits = self.store.search_dense(query_emb, limit=pool_k, filters=filters)
         else:
-            dense_scores = self.dense.score(query)
-            dense_ranked = np.argsort(dense_scores)[::-1]
-            dense_rank_dict = {int(idx): rank for rank, idx in enumerate(dense_ranked)}
+            hits = self.store.search_hybrid(
+                query, query_emb, limit=pool_k, rrf_k=RRF_K, filters=filters
+            )
 
         t_retrieval = (time.perf_counter() - t0) * 1000
 
-        q_norm = normalize_turkish(query)
-        candidates: list[dict[str, Any]] = []
-        for idx, pol in enumerate(self.policies):
-            r_bm25 = bm25_rank_dict[idx]
-            r_dense = dense_rank_dict[idx]
-            rrf_score = (1.0 / (RRF_K + r_bm25)) + (1.0 / (RRF_K + r_dense))
-
-            if mode == "bm25":
-                primary_score = float(bm25_scores[idx])
-            elif mode == "dense":
-                primary_score = float(dense_scores[idx])
-            else:
-                kw_bonus = sum(1.0 for kw in pol.get("keywords", []) if kw in q_norm)
-                primary_score = rrf_score * 10.0 + kw_bonus * 0.25 + (float(dense_scores[idx]) * 0.5)
-
-            candidates.append({
-                "idx": idx,
-                "policy": pol,
-                "bm25_rank": r_bm25 + 1,
-                "dense_rank": r_dense + 1,
-                "bm25_score": float(bm25_scores[idx]),
-                "dense_score": float(dense_scores[idx]),
-                "rrf_score": float(rrf_score),
-                "primary_score": primary_score,
-                "reranker_score": None,
-            })
-
-        candidates.sort(key=lambda c: c["primary_score"], reverse=True)
-
+        rerank_scores: dict[str, float] = {}
         t_rerank_start = time.perf_counter()
-        if mode == "hybrid_rerank" and self.reranker_model is not None:
-            pairs = [[query, f"{c['policy']['title']}: {c['policy']['text']}"] for c in candidates]
-            ce_scores = np.asarray(self.reranker_model.predict(pairs), dtype=float)
-            ce_z = (ce_scores - ce_scores.mean()) / (ce_scores.std() + 1e-6)
-            for c, raw_ce, z in zip(candidates, ce_scores, ce_z):
-                c["reranker_score"] = round(float(raw_ce), 4)
-                c["primary_score"] += CE_WEIGHT * float(z)
-            candidates.sort(key=lambda c: c["primary_score"], reverse=True)
+        if normalized_mode == "hybrid_rerank" and self.reranker_model is not None and hits:
+            pairs = [[query, f"{h['chunk']['title']}: {h['chunk']['content']}"] for h in hits]
+            ce_raw = np.asarray(self.reranker_model.predict(pairs), dtype=float)
+            ce_z = (ce_raw - ce_raw.mean()) / (ce_raw.std() + 1e-6)
+            scored: list[tuple[float, StoreHit, float]] = []
+            for h, raw_s, z_s in zip(hits, ce_raw, ce_z):
+                combined = h["rrf_score"] * 10.0 + CE_WEIGHT * float(z_s)
+                scored.append((combined, h, float(raw_s)))
+            scored.sort(key=lambda x: x[0], reverse=True)
+            hits = [item[1] for item in scored]
+            rerank_scores = {item[1]["chunk"]["chunk_id"]: round(item[2], 4) for item in scored}
         t_rerank = (time.perf_counter() - t_rerank_start) * 1000
 
-        q_tokens = set(tokenize_turkish(query))
-        evidences: list[RetrievedEvidence] = []
-        for c in candidates[:top_k]:
-            pol = c["policy"]
-            pol_tokens = set(tokenize_turkish(f"{pol['title']} {pol['text']} {' '.join(pol.get('keywords', []))}"))
-            overlap = len(q_tokens & pol_tokens)
-            has_confidence = overlap >= 1 or (dense_active and c["dense_score"] >= DENSE_GROUNDING_THRESHOLD)
+        top_hit = hits[0] if hits else None
+        abstained, abstention_reason = self._evaluate_abstention(query, top_hit, normalized_mode)
 
+        q_tokens = set(tokenize_text(query))
+        evidences: list[RetrievedEvidence] = []
+        for h in hits[:top_k]:
+            ch = h["chunk"]
+            doc_tokens = set(tokenize_text(f"{ch['title']} {ch['content']}"))
+            overlap = len(q_tokens & doc_tokens)
+            passed = not abstained and (
+                overlap >= 1
+                or (self.encoder.is_active and h["dense_score"] >= DEFAULT_ABSTAIN_DENSE_THRESHOLD)
+            )
             evidences.append({
-                "policy_id": pol["id"],
-                "title": pol["title"],
-                "category": pol["category"],
-                "content": pol["text"],
-                "bm25_rank": c["bm25_rank"],
-                "dense_rank": c["dense_rank"],
-                "bm25_score": round(c["bm25_score"], 4),
-                "dense_score": round(c["dense_score"], 4),
-                "rrf_score": round(c["rrf_score"], 5),
-                "reranker_score": c["reranker_score"],
-                "confidence_passed": has_confidence,
+                "chunk_id": ch["chunk_id"],
+                "doc_id": ch["doc_id"],
+                "title": ch["title"],
+                "article_no": ch["article_no"],
+                "citation_tag": ch["citation_tag"],
+                "category": ch["category"],
+                "lang": ch["lang"],
+                "source_url": ch["source_url"],
+                "content": ch["content"],
+                "lexical_rank": h["lexical_rank"],
+                "dense_rank": h["dense_rank"],
+                "lexical_score": round(h["lexical_score"], 4),
+                "dense_score": round(h["dense_score"], 4),
+                "rrf_score": round(h["rrf_score"], 5),
+                "reranker_score": rerank_scores.get(ch["chunk_id"]),
+                "confidence_passed": passed,
             })
 
-        best_pol_id = evidences[0]["policy_id"] if evidences else "POL_GENEL_01"
-        is_grounded = evidences[0]["confidence_passed"] if evidences else False
-
+        best_ev = evidences[0] if (evidences and not abstained) else None
         return {
             "query": query,
             "mode": mode,
-            "dense_backend": self.dense.backend,
+            "store_backend": self.store.backend_name,
+            "dense_backend": self.encoder.backend,
             "reranker_active": self.reranker_model is not None,
+            "abstained": abstained,
+            "abstention_reason": abstention_reason,
             "top_evidences": evidences,
-            "best_policy_id": best_pol_id,
-            "grounding_verified": is_grounded,
+            "best_chunk_id": best_ev["chunk_id"] if best_ev else None,
+            "best_citation_tag": best_ev["citation_tag"] if best_ev else None,
+            "grounding_verified": bool(best_ev and best_ev["confidence_passed"]),
             "retrieval_latency_ms": round(t_retrieval, 2),
             "rerank_latency_ms": round(t_rerank, 2),
         }
@@ -278,5 +269,6 @@ def retrieve_policies(
     query: str,
     top_k: int = 3,
     mode: RetrievalMode = "hybrid",
+    filters: RetrievalFilter | None = None,
 ) -> RAGResult:
-    return get_rag_engine().retrieve(query, top_k=top_k, mode=mode)
+    return get_rag_engine().retrieve(query, top_k=top_k, mode=mode, filters=filters)

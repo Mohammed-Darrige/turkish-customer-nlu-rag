@@ -13,7 +13,7 @@
         <span class="brand-badge">RAG</span>
         <div>
           <h1>Müşteri Destek Sesli &amp; Metin Asistanı</h1>
-          <p class="subtitle">BM25 + Multilingual-E5 Hibrit Arama · Politika Doğrulamalı Yanıt</p>
+          <p class="subtitle">PostgreSQL pgvector + Türkçe FTS/BM25 + Multilingual-E5 Hibrit RAG · Kaynak &amp; Sayı Doğrulamalı</p>
         </div>
       </div>
       <div class="status-bar" id="statusBar" aria-live="polite">
@@ -27,9 +27,10 @@
       <div class="control-group">
         <label for="modeSelect">Arama Modu</label>
         <select id="modeSelect">
-          <option value="hybrid" selected>Hybrid (BM25 + E5 + RRF)</option>
-          <option value="bm25">BM25 Only</option>
+          <option value="hybrid" selected>Hybrid (Lexical + E5 + RRF)</option>
+          <option value="lexical">Lexical Only (BM25 / tsvector)</option>
           <option value="dense">Dense E5 Only</option>
+          <option value="hybrid_rerank">Hybrid + Cross-Encoder</option>
         </select>
       </div>
       <label class="toggle">
@@ -43,11 +44,11 @@
     </section>
 
     <div class="samples" id="samples" aria-label="Örnek sorular">
-      <button type="button" class="sample-btn" data-q="Kargom 5 gündür gelmedi, nerede?">Kargo gecikmesi</button>
-      <button type="button" class="sample-btn" data-q="14 gün dolmadan cayma hakkımı kullanmak istiyorum">14 gün iade</button>
-      <button type="button" class="sample-btn" data-q="İç çamaşırının paketini açtım iade edebilir miyim?">Hijyen istisnası</button>
-      <button type="button" class="sample-btn" data-q="Kartımdan iki kere para çekildi">Çift çekim</button>
-      <button type="button" class="sample-btn" data-q="Ürünün dikişleri sökük geldi değişim yapabilir miyim?">Ayıplı ürün</button>
+      <button type="button" class="sample-btn" data-q="İnternetten aldığım kulaklığı 14 gün içinde sebep göstermeden iade edebilir miyim?">14 gün cayma</button>
+      <button type="button" class="sample-btn" data-q="İade ederken kargo parasını benden kesebilirler mi?">İade kargo ücreti</button>
+      <button type="button" class="sample-btn" data-q="Paketi açılmış iç çamaşırı iade alınır mı?">Hijyen istisnası</button>
+      <button type="button" class="sample-btn" data-q="Ürünün dikişleri sökük geldi değişim mi isteyeyim iade mi?">Ayıplı mal</button>
+      <button type="button" class="sample-btn" data-q="Kıdem tazminatı hesaplaması iş kanununa göre nasıl yapılır?">Kapsam dışı (Ret)</button>
     </div>
 
     <main class="chat-thread" id="thread" aria-live="polite">

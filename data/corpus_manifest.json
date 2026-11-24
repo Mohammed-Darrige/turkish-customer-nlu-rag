@@ -1,0 +1,55 @@
+{
+  "total_chunks": 213,
+  "total_tokens": 36342,
+  "chunks_jsonl_sha256": "d14ae28eb6a9f9a6bb9d77497a3a289233e33886c82477a0f10ceb559b62d896",
+  "per_doc_chunk_counts": {
+    "kanun_6502": 118,
+    "mesafeli_sozlesmeler": 30,
+    "garanti_belgesi": 15,
+    "satis_sonrasi": 23,
+    "store_ops_faq": 27
+  },
+  "sources": {
+    "kanun_6502": {
+      "doc_id": "kanun_6502",
+      "title": "6502 Sayılı Tüketicinin Korunması Hakkında Kanun",
+      "category": "genel",
+      "effective_date": "2026-01-01",
+      "source_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=6502&MevzuatTur=1&MevzuatTertip=5",
+      "raw_file": "data/raw/kanun_6502.txt",
+      "raw_sha256": "20f7c6a8ad6defa7da5f20f0f820c9cf2a82359e7f9ed97f8f4d450da41ad860",
+      "char_count": 140344
+    },
+    "mesafeli_sozlesmeler": {
+      "doc_id": "mesafeli_sozlesmeler",
+      "title": "Mesafeli Sözleşmeler Yönetmeliği",
+      "category": "iade",
+      "effective_date": "2026-01-01",
+      "source_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=20237&MevzuatTur=7&MevzuatTertip=5",
+      "raw_file": "data/raw/mesafeli_sozlesmeler.txt",
+      "raw_sha256": "c2eb2f83a683c02b408a9e9d202a976cb8b1aafcce35743baaa215ead0ad7d5e",
+      "char_count": 33674
+    },
+    "garanti_belgesi": {
+      "doc_id": "garanti_belgesi",
+      "title": "Garanti Belgesi Yönetmeliği",
+      "category": "urun",
+      "effective_date": "2014-06-13",
+      "source_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=19782&MevzuatTur=7&MevzuatTertip=5",
+      "raw_file": "data/raw/garanti_belgesi.txt",
+      "raw_sha256": "a5d833ae0d12a6e0cccfe1f54aeb0f5b58001a147db9d3b81b1345875ccce41e",
+      "char_count": 18817
+    },
+    "satis_sonrasi": {
+      "doc_id": "satis_sonrasi",
+      "title": "Satış Sonrası Hizmetler Yönetmeliği",
+      "category": "teknik",
+      "effective_date": "2014-06-13",
+      "source_url": "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=19783&MevzuatTur=7&MevzuatTertip=5",
+      "raw_file": "data/raw/satis_sonrasi.txt",
+      "raw_sha256": "ffa44d0a04626a71dc764328f72390e2e4f611a5417322ec052e7699726f94bb",
+      "char_count": 36945
+    }
+  },
+  "store_ops_faq_sha256": "fbdf19184e89fc1005d0bbda73ffedb263179556a11c9bb5f1c013f3924f4e47"
+}
